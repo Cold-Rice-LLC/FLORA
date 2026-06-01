@@ -1,1 +1,1 @@
-<h1>Information</h1>
+<!-- Information content is rendered by +layout.svelte -->

@@ -1,1 +1,1 @@
-<h1>Index</h1>
+<!-- Index list content is rendered by +layout.svelte -->
