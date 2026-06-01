@@ -1,0 +1,101 @@
+@import 'tailwindcss';
+
+@font-face {
+	font-family: 'UniversLT';
+	src: url('/UniversLT-55Rm.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Times';
+	src: url('/Times-Roman.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Times';
+	src: url('/Times-Italic.woff2') format('woff2');
+	font-weight: 400;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Times';
+	src: url('/Times-Bold.woff2') format('woff2');
+	font-weight: 600;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Times';
+	src: url('/Times-BoldItalic.woff2') format('woff2');
+	font-weight: 600;
+	font-style: italic;
+}
+
+@theme {
+	--text-base: 1.6rem;
+  --text-base--leading: 1.06;
+  --text-base--tracking: .02em;
+
+	--color-black: #000000;
+	--color-white: #ffffff;
+  --color-tan: #fdf5e7;
+  --color-grey-1: #b2b3b2;
+
+  --spacing-sm: 1rem;
+	--spacing-base: 2rem;
+  --spacing-md: 3rem;
+  --spacing-lg: 4rem;
+  --spacing-xl: 5rem;
+  --spacing-xxl: 10rem;
+
+	--font-primary: 'Times', sans-serif;
+	--font-secondary: 'UniversLT', sans-serif;
+}
+
+html {
+	font-size: 10px;
+	font-family: var(--font-primary);
+	-webkit-font-smoothing: antialiased;
+}
+
+body {
+	font-size: var(--text-base);
+	line-height: var(--text-base--leading);
+	letter-spacing: var(--text-base--tracking);
+
+  #nprogress .bar {
+    height: 2px;
+    background-color: var(--color-black);
+
+    @media (min-width: 1024px) {
+      height: 2px;
+    }
+  }
+}
+
+button {
+	cursor: pointer;
+}
+
+input {
+	outline: none;
+	border: none;
+	box-shadow: none;
+}
+
+/*
+Lazy Load
+*/
+
+img[loading='lazy'] {
+	opacity: 0;
+	transition: opacity 0.2s;
+
+	&.loaded {
+		opacity: 1;
+	}
+}
