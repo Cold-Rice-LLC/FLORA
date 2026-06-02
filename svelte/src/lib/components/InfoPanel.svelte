@@ -1,9 +1,26 @@
 <script>
-	let { children } = $props();
+	import { page } from '$app/state';
+	import Nav from '$lib/components/Nav.svelte';
+
+	// props
+	let { children, href } = $props();
+
+	// derived
+	let isBackground = $derived(page.url.pathname !== href);
 </script>
 
 <section id="index-info-panel">
-	{@render children?.()}
+	<Nav id="info-nav" class="p-sm" />
+
+	{#if isBackground}
+		<a href={href} class="panel-overlay">
+			<span class="sr-only">Close panel</span>
+		</a>
+	{/if}
+
+	<div class="p-sm">
+		{@render children?.()}
+	</div>
 </section>
 
 <style>
@@ -17,5 +34,12 @@
 		background-color: var(--color-tan);
 		z-index: 100;
 		overflow-y: auto;
+	}
+
+	.panel-overlay {
+		position: absolute;
+		inset: 0;
+		z-index: 100;
+		cursor: pointer;
 	}
 </style>

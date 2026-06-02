@@ -1,1 +1,1 @@
-<h1>Home</h1>
+<!-- Home content is rendered by +layout.svelte -->
