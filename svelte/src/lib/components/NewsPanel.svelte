@@ -11,8 +11,8 @@
 	let closeHref = $derived($page.url.pathname.startsWith('/information') ? '/information' : '/');
 </script>
 
-<section id="news-detail-panel" class="p-sm">
-	<div class="flex justify-between items-start font-secondary text-xs">
+<section id="news-detail-panel" class="p-xs space-y-xl">
+	<div class="news-detail-header flex justify-between items-start font-secondary text-xs">
 		<div>
 			{#if formattedDate || data?.news?.time}
 				<p>
@@ -42,5 +42,12 @@
 		background-color: var(--color-grey-1);
 		z-index: 300;
 		overflow-y: auto;
+		overscroll-behavior: none;
+		scrollbar-width: none;
+	}
+
+	.news-detail-header {
+		position: sticky;
+		top: 0px;
 	}
 </style>

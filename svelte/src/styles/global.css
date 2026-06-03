@@ -54,12 +54,13 @@
   --color-tan: #fdf5e7;
   --color-grey-1: #b2b3b2;
 
-  --spacing-sm: 0.5rem; /* was 1rem before */
+	--spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
 	--spacing-base: 2rem;
   --spacing-md: 3rem;
   --spacing-lg: 4rem;
   --spacing-xl: 5rem;
-  --spacing-xxl: 10rem;
+  --spacing-2xl: 10rem;
 
 	--font-primary: 'Times', sans-serif;
 	--font-secondary: 'UniversLT', sans-serif;
@@ -79,6 +80,7 @@ body {
 	font-size: var(--text-lg);
 	line-height: var(--text-lg--leading);
 	letter-spacing: var(--tracking);
+	overflow-y: hidden;
 
   #nprogress .bar {
     height: 2px;

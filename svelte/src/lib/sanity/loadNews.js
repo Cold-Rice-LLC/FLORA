@@ -12,7 +12,19 @@ export async function loadNews({ params }) {
 			subtitle,
 			date,
 			time,
-			modules
+			modules[] {
+				_type,
+				_key,
+				_type == 'imageModule' => {
+					image { asset-> },
+					captionEs,
+					captionEn
+				},
+				_type == 'textModule' => {
+					textEs,
+					textEn
+				}
+			}
 		}`,
 		{ slug }
 	);

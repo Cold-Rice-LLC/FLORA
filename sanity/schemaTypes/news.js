@@ -93,7 +93,8 @@ export default {
           preview: {
             select: {media: 'image', subtitle: 'captionEn'},
             prepare({media, subtitle}) {
-              return {title: 'Image', media, subtitle}
+              const text = subtitle?.[0]?.children?.map((c) => c.text).join('') ?? ''
+              return {title: 'Image', media, subtitle: text}
             },
           },
         },
@@ -118,7 +119,8 @@ export default {
           preview: {
             select: {subtitle: 'textEn'},
             prepare({subtitle}) {
-              return {title: 'Text', subtitle}
+              const text = subtitle?.[0]?.children?.map((c) => c.text).join('') ?? ''
+              return {title: 'Text', subtitle: text}
             },
           },
         },

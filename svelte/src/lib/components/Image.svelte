@@ -1,23 +1,22 @@
 <script>
-	import { urlFor } from '$lib/sanity/client';
+  import { urlFor } from '$lib/sanity/client.js';
 
-	let { imageUrl, alt, classes, width = 2600 } = $props();
+  let { item, fetchWidth = 1800, classes, loading = 'lazy' } = $props();
 
-	const src = $derived(urlFor(imageUrl).width(width).url());
+  const dimensions = $derived(item?.asset?.metadata?.dimensions);
+  const src = $derived(urlFor(item.asset).width(fetchWidth).url());
 
-	let loaded = $state(false);
-	const classList = $derived([classes, loaded ? 'loaded' : ''].filter(Boolean).join(' '));
+  let loaded = $state(false);
+  const classList = $derived([classes, loaded ? 'loaded' : ''].filter(Boolean).join(' '));
 </script>
 
 <img
-	{src}
-	{alt}
-	class={classList}
-	loading="lazy"
-	onload={() => {
-		loaded = true;
-	}}
-	onerror={() => {
-		loaded = true;
-	}}
+  {src}
+  alt={item.alt || item.caption || ''}
+  width={dimensions?.width}
+  height={dimensions?.height}
+  class={classList}
+  {loading}
+  onload={() => { loaded = true; }}
+  onerror={() => { loaded = true; }}
 />

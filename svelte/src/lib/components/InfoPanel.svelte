@@ -10,7 +10,7 @@
 </script>
 
 <section id="index-info-panel">
-	<Nav id="info-nav" class="p-sm" />
+	<Nav id="info-nav" class="p-xs" />
 
 	{#if isBackground}
 		<a href={href} class="panel-overlay">
@@ -18,7 +18,7 @@
 		</a>
 	{/if}
 
-	<div class="p-sm">
+	<div class="p-xs">
 		{@render children?.()}
 	</div>
 </section>
@@ -34,6 +34,7 @@
 		background-color: var(--color-tan);
 		z-index: 100;
 		overflow-y: auto;
+		overscroll-behavior: none;
 		scrollbar-width: none;
 	}
 

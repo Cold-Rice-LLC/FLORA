@@ -26,6 +26,8 @@
 		transform: translate(-50%, -50%);
 		background-color: var(--color-white);
 		z-index: 200;
+		overscroll-behavior: none;
 		overflow-y: auto;
+		scrollbar-width: none;
 	}
 </style>

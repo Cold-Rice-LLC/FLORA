@@ -1,5 +1,6 @@
 <script>
 	import { format, parseISO } from 'date-fns';
+	import { page } from '$app/stores';
 
 	let { news } = $props();
 
@@ -8,9 +9,11 @@
 			? format(parseISO(news.date), 'M.d.yy')
 			: null
 	);
+
+	let isActive = $derived($page.url.pathname === `/information/${news.slug.current}`);
 </script>
 
-<article class="news-item text-xs font-secondary">
+<article class="news-item text-xs font-secondary" class:opacity-30={isActive}>
   <a href="/information/{news.slug.current}">
     {#if formattedDate || news.time}
       <p class="date">
