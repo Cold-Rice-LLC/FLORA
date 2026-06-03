@@ -2,7 +2,19 @@ export default {
   name: 'informationPage',
   type: 'document',
   title: 'Information Page',
+  preview: {
+    prepare() {
+      return { title: 'Information' }
+    },
+  },
   fields: [
+    {
+      name: 'internalTitle',
+      type: 'string',
+      hidden: true,
+      readOnly: true,
+      initialValue: 'Information',
+    },
     {
       name: 'infoTextEs',
       type: 'array',

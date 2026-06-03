@@ -1,4 +1,4 @@
-import {CogIcon, HomeIcon, InfoOutlineIcon, ImagesIcon, BookIcon} from '@sanity/icons'
+import {CogIcon, HomeIcon, InfoOutlineIcon, ImagesIcon, BookIcon, TagIcon} from '@sanity/icons'
 
 export const myStructure = (S) =>
   S.list()
@@ -29,9 +29,27 @@ export const myStructure = (S) =>
         ),
 
       S.listItem()
-        .title('Projects')
+        .title('Index')
         .icon(ImagesIcon)
-        .child(S.documentTypeList('project').title('Projects')),
+        .child(
+          S.list()
+            .title('Index')
+            .items([
+              S.listItem()
+                .title('Projects')
+                .icon(ImagesIcon)
+                .child(S.documentTypeList('project').title('Projects')),
+
+              S.listItem()
+                .title('Phase Categories')
+                .icon(TagIcon)
+                .child(
+                  S.documentTypeList('phaseCategory')
+                    .title('Phase Categories')
+                    .defaultOrdering([{ field: 'order', direction: 'asc' }])
+                ),
+            ])
+        ),
 
       S.listItem()
         .title('News')

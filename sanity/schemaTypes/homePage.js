@@ -2,6 +2,11 @@ export default {
   name: 'homePage',
   type: 'document',
   title: 'Home Page',
+  preview: {
+    prepare() {
+      return { title: 'Home' }
+    },
+  },
   fields: [
     {
       name: 'featuredProjects',

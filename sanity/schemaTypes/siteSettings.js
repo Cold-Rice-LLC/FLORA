@@ -2,7 +2,19 @@ export default {
   name: 'siteSettings',
   type: 'document',
   title: 'Site Settings',
+  preview: {
+    prepare() {
+      return { title: 'Site Settings' }
+    },
+  },
   fields: [
+    {
+      name: 'internalTitle',
+      type: 'string',
+      hidden: true,
+      readOnly: true,
+      initialValue: 'Site Settings',
+    },
     {
       name: 'siteTitle',
       type: 'string',
