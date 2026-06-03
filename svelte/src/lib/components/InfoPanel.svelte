@@ -34,6 +34,7 @@
 		background-color: var(--color-tan);
 		z-index: 100;
 		overflow-y: auto;
+		scrollbar-width: none;
 	}
 
 	.panel-overlay {
@@ -41,5 +42,10 @@
 		inset: 0;
 		z-index: 100;
 		cursor: pointer;
+	}
+
+	:global(#info-nav) {
+		position: sticky;
+		top: 0px;
 	}
 </style>

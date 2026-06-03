@@ -1,9 +1,11 @@
 <script>
+	import { format, parseISO } from 'date-fns';
+
 	let { news } = $props();
 
 	let formattedDate = $derived(
 		news.date
-			? new Date(news.date).toLocaleDateString('en-US', {year: 'numeric', month: 'numeric', day: 'numeric'})
+			? format(parseISO(news.date), 'M.d.yy')
 			: null
 	);
 </script>
