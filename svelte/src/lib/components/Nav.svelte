@@ -9,7 +9,7 @@
 
 <header {id} class={className}>
 	<nav>
-		<ul class="flex items-center gap-2">
+		<ul class="flex items-center gap-2 leading-none">
 			<a href="/">FLORA:</a>
 
 			<li>

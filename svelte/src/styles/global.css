@@ -37,15 +37,15 @@
 
 @theme {
 	--text-xs: 1.333rem;     /* 15pt */
-	--text-xs--leading: 1.103;
+	--text-xs--line-height: 1.103;
 	--text-sm: 1.422rem;     /* 16pt */
-	--text-sm--leading: 1.125;
+	--text-sm--line-height: 1.125;
 	--text-base: 1.689rem;   /* 19pt */
-	--text-base--leading: 1.105;
+	--text-base--line-height: 1.105;
 	--text-md: 1.778rem;     /* 20pt */
-	--text-md--leading: 1.1;
+	--text-md--line-height: 1.1;
 	--text-lg: 2rem;         /* 22.5pt */
-	--text-lg--leading: 1.06;
+	--text-lg--line-height: 1.06;
 
 	--tracking: .02em;
 
@@ -54,7 +54,7 @@
   --color-tan: #fdf5e7;
   --color-grey-1: #b2b3b2;
 
-  --spacing-sm: 1rem;
+  --spacing-sm: 0.5rem; /* was 1rem before */
 	--spacing-base: 2rem;
   --spacing-md: 3rem;
   --spacing-lg: 4rem;

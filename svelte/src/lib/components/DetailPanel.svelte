@@ -1,12 +1,16 @@
 <script>
+	import { page } from '$app/stores';
+
 	let { children } = $props();
+
+	let closeHref = $derived($page.url.pathname.startsWith('/index') ? '/index' : '/');
 </script>
 
 <section id="index-detail-panel" class="p-sm">
 	<div class="flex justify-between items-center font-secondary py-base text-xs">
 		<p>Title</p>
 
-		<a href="/index">Cerrar / Close</a>
+		<a href={closeHref}>Cerrar / Close</a>
 	</div>
 
 	{@render children?.()}

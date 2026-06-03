@@ -1,12 +1,31 @@
 <script>
-	let { children } = $props();
+	import { format, parseISO } from 'date-fns';
+	import { page } from '$app/stores';
+
+	let { children, data } = $props();
+
+	let formattedDate = $derived(
+		data?.news?.date ? format(parseISO(data.news.date), 'M.d.yy') : null
+	);
+
+	let closeHref = $derived($page.url.pathname.startsWith('/information') ? '/information' : '/');
 </script>
 
 <section id="news-detail-panel" class="p-sm">
-	<div class="flex justify-between items-center font-secondary text-xs">
-		<p>Title</p>
+	<div class="flex justify-between items-start font-secondary text-xs">
+		<div>
+			{#if formattedDate || data?.news?.time}
+				<p>
+					{#if formattedDate}<span>{formattedDate}</span>{/if}
+					{#if data?.news?.time}<span> {data.news.time}</span>{/if}
+				</p>
+			{/if}
+			{#if data?.news?.eyebrow}<p>{data.news.eyebrow}</p>{/if}
+			{#if data?.news?.title}<p>{data.news.title}</p>{/if}
+			{#if data?.news?.subtitle}<p>{data.news.subtitle}</p>{/if}
+		</div>
 
-		<a href="/information">Cerrar / Close</a>
+		<a href={closeHref}>Cerrar / Close</a>
 	</div>
 
 	{@render children?.()}

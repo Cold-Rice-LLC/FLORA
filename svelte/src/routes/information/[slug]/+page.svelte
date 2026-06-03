@@ -1,7 +1,10 @@
 <script>
 	import NewsPanel from '$lib/components/NewsPanel.svelte';
+	import NewsDetail from '$lib/components/NewsDetail.svelte';
+
+	let { data } = $props();
 </script>
 
-<NewsPanel>
-	<h1>News Detail</h1>
+<NewsPanel {data}>
+	<NewsDetail {data} />
 </NewsPanel>
