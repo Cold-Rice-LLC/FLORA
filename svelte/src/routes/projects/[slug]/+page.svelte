@@ -1,7 +1,10 @@
 <script>
 	import DetailPanel from '$lib/components/DetailPanel.svelte';
+	import ProjectDetail from '$lib/components/ProjectDetail.svelte';
+
+	let { data } = $props();
 </script>
 
 <DetailPanel>
-	<h1>Project Detail</h1>
+	<ProjectDetail {data} />
 </DetailPanel>

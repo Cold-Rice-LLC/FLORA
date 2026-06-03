@@ -2,7 +2,13 @@
 	let { children } = $props();
 </script>
 
-<section id="index-detail-panel">
+<section id="index-detail-panel" class="p-sm">
+	<div class="flex justify-between items-center font-secondary py-base text-xs">
+		<p>Title</p>
+
+		<a href="/index">Cerrar / Close</a>
+	</div>
+
 	{@render children?.()}
 </section>
 

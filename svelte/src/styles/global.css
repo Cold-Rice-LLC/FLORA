@@ -36,9 +36,18 @@
 }
 
 @theme {
-	--text-base: 1.6rem;
-  --text-base--leading: 1.06;
-  --text-base--tracking: .02em;
+	--text-xs: 1.133rem;     /* 15pt */
+	--text-xs--leading: 1.103;
+	--text-sm: 1.209rem;     /* 16pt */
+	--text-sm--leading: 1.125;
+	--text-base: 1.436rem;   /* 19pt */
+	--text-base--leading: 1.105;
+	--text-md: 1.511rem;     /* 20pt */
+	--text-md--leading: 1.1;
+	--text-lg: 1.7rem;       /* 22.5pt */
+	--text-lg--leading: 1.06;
+
+	--tracking: .02em;
 
 	--color-black: #000000;
 	--color-white: #ffffff;
@@ -63,9 +72,9 @@ html {
 }
 
 body {
-	font-size: var(--text-base);
-	line-height: var(--text-base--leading);
-	letter-spacing: var(--text-base--tracking);
+	font-size: var(--text-lg);
+	line-height: var(--text-lg--leading);
+	letter-spacing: var(--tracking);
 
   #nprogress .bar {
     height: 2px;
