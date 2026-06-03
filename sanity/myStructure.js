@@ -1,4 +1,4 @@
-import {CogIcon} from '@sanity/icons'
+import {CogIcon, HomeIcon, InfoOutlineIcon, ImagesIcon, BookIcon} from '@sanity/icons'
 
 export const myStructure = (S) =>
   S.list()
@@ -8,7 +8,33 @@ export const myStructure = (S) =>
         .title('Site Settings')
         .icon(CogIcon)
         .child(S.document().schemaType('siteSettings').documentId('siteSettings')),
-      ...S.documentTypeListItems().filter(
-        (listItem) => !['siteSettings'].includes(listItem.getId()),
-      ),
+
+      S.listItem()
+        .title('Pages')
+        .icon(HomeIcon)
+        .child(
+          S.list()
+            .title('Pages')
+            .items([
+              S.listItem()
+                .title('Home')
+                .icon(HomeIcon)
+                .child(S.document().schemaType('homePage').documentId('homePage')),
+
+              S.listItem()
+                .title('Information')
+                .icon(InfoOutlineIcon)
+                .child(S.document().schemaType('informationPage').documentId('informationPage')),
+            ])
+        ),
+
+      S.listItem()
+        .title('Projects')
+        .icon(ImagesIcon)
+        .child(S.documentTypeList('project').title('Projects')),
+
+      S.listItem()
+        .title('News')
+        .icon(BookIcon)
+        .child(S.documentTypeList('news').title('News')),
     ])
