@@ -8,7 +8,7 @@ export function ReferenceRadio(props) {
 
   useEffect(() => {
     client
-      .fetch(`*[_type == "phaseCategory"] | order(order asc) { _id, titleEs, titleEn, order }`)
+      .fetch(`*[_type == "phaseCategory" && !(_id in path("drafts.**"))] | order(order asc) { _id, titleEs, titleEn, order }`)
       .then(setCategories)
   }, [client])
 

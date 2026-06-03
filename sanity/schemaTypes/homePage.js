@@ -1,3 +1,5 @@
+import {FeaturedProjectsPicker} from '../components/FeaturedProjectsPicker.jsx'
+
 export default {
   name: 'homePage',
   type: 'document',
@@ -19,6 +21,9 @@ export default {
           to: [{ type: 'project' }],
         },
       ],
+      components: {
+        input: FeaturedProjectsPicker,
+      },
     },
   ],
 }
