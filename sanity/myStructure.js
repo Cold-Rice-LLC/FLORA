@@ -54,5 +54,9 @@ export const myStructure = (S) =>
       S.listItem()
         .title('News')
         .icon(BookIcon)
-        .child(S.documentTypeList('news').title('News')),
+        .child(
+          S.documentTypeList('news')
+            .title('News')
+            .defaultOrdering([{field: 'date', direction: 'desc'}])
+        ),
     ])

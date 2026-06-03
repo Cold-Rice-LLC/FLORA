@@ -2,6 +2,22 @@ export default {
   name: 'news',
   type: 'document',
   title: 'News',
+  preview: {
+    select: {title: 'title', date: 'date'},
+    prepare({title, date}) {
+      const formatted = date
+        ? new Date(date).toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric'})
+        : 'No date'
+      return {title, subtitle: formatted}
+    },
+  },
+  orderings: [
+    {
+      title: 'Date, Newest First',
+      name: 'dateDesc',
+      by: [{field: 'date', direction: 'desc'}],
+    },
+  ],
   fields: [
     {
       name: 'title',

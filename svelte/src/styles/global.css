@@ -65,10 +65,14 @@
 	--font-secondary: 'UniversLT', sans-serif;
 }
 
+:root {
+	--underline-thickness: .05em;
+	--underline-offset: .03em;
+}
+
 html {
 	font-size: 10px;
 	font-family: var(--font-primary);
-	-webkit-font-smoothing: antialiased;
 }
 
 body {

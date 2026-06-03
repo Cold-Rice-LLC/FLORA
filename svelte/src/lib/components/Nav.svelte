@@ -33,8 +33,8 @@
 
 			&.active {
 				text-decoration: underline;
-				text-decoration-thickness: .05em;
-				text-underline-offset: .13em;
+				text-decoration-thickness: var(--underline-thickness);
+				text-underline-offset: var(--underline-offset);
 			}
 		}
 	}
