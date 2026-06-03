@@ -36,15 +36,15 @@
 }
 
 @theme {
-	--text-xs: 1.133rem;     /* 15pt */
+	--text-xs: 1.333rem;     /* 15pt */
 	--text-xs--leading: 1.103;
-	--text-sm: 1.209rem;     /* 16pt */
+	--text-sm: 1.422rem;     /* 16pt */
 	--text-sm--leading: 1.125;
-	--text-base: 1.436rem;   /* 19pt */
+	--text-base: 1.689rem;   /* 19pt */
 	--text-base--leading: 1.105;
-	--text-md: 1.511rem;     /* 20pt */
+	--text-md: 1.778rem;     /* 20pt */
 	--text-md--leading: 1.1;
-	--text-lg: 1.7rem;       /* 22.5pt */
+	--text-lg: 2rem;         /* 22.5pt */
 	--text-lg--leading: 1.06;
 
 	--tracking: .02em;

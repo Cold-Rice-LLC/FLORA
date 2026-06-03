@@ -1,7 +1,7 @@
 export default {
   name: 'phaseCategory',
   type: 'document',
-  title: 'Phase Category',
+  title: 'Project Stage',
   fields: [
     {
       name: 'titleEs',
@@ -19,7 +19,7 @@ export default {
       name: 'order',
       type: 'number',
       title: 'Order',
-      description: 'Controls the display order of phases on the project page. Lower numbers appear first. Must be unique.',
+      description: 'Controls the display order of stages on the project page. Lower numbers appear first. Must be unique.',
       validation: (Rule) =>
         Rule.required()
           .integer()
@@ -31,7 +31,7 @@ export default {
               `count(*[_type == "phaseCategory" && order == $order && _id != $id])`,
               { order: value, id: context.document._id }
             )
-            return count === 0 ? true : 'A phase category with this order value already exists.'
+            return count === 0 ? true : 'A project stage with this order value already exists.'
           }),
     },
   ],
@@ -40,13 +40,13 @@ export default {
     prepare({ titleEs, titleEn, order }) {
       return {
         title: `${titleEs} / ${titleEn}`,
-        subtitle: `Phase ${order}`,
+        subtitle: `Stage ${order}`,
       }
     },
   },
   orderings: [
     {
-      title: 'Phase Order',
+      title: 'Stage Order',
       name: 'orderAsc',
       by: [{ field: 'order', direction: 'asc' }],
     },

@@ -42,13 +42,13 @@ export default {
       name: 'introduction',
       type: 'array',
       title: 'Introduction',
-      of: [{ type: 'block' }],
+      of: [{type: 'block'}],
     },
     {
       name: 'phases',
       type: 'array',
-      title: 'Phases',
-      description: 'Add one entry per phase. Each phase category can only be used once.',
+      title: 'Project Stages',
+      description: 'Add one entry per stage. Each project stage can only be used once.',
       of: [
         {
           type: 'object',
@@ -58,19 +58,19 @@ export default {
             const usedIds = (context.document?.phases ?? [])
               .map((p) => p.category?._ref)
               .filter(Boolean)
-            const client = context.getClient({ apiVersion: '2024-01-01' })
+            const client = context.getClient({apiVersion: '2024-01-01'})
             const next = await client.fetch(
               `*[_type == "phaseCategory" && !(_id in $usedIds)] | order(order asc)[0]`,
-              { usedIds }
+              {usedIds},
             )
-            return next ? { category: { _type: 'reference', _ref: next._id } } : {}
+            return next ? {category: {_type: 'reference', _ref: next._id}} : {}
           },
           fields: [
             {
               name: 'category',
               type: 'reference',
-              title: 'Phase Category',
-              to: [{ type: 'phaseCategory' }],
+              title: 'Project Stage',
+              to: [{type: 'phaseCategory'}],
               validation: (Rule) => Rule.required(),
               components: {
                 input: ReferenceRadio,
@@ -91,25 +91,25 @@ export default {
                       name: 'image',
                       type: 'image',
                       title: 'Image',
-                      options: { hotspot: true },
+                      options: {hotspot: true},
                     },
                     {
                       name: 'captionEs',
                       type: 'array',
                       title: 'Caption (Spanish)',
-                      of: [{ type: 'block' }],
+                      of: [{type: 'block'}],
                     },
                     {
                       name: 'captionEn',
                       type: 'array',
                       title: 'Caption (English)',
-                      of: [{ type: 'block' }],
+                      of: [{type: 'block'}],
                     },
                   ],
                   preview: {
-                    select: { media: 'image' },
-                    prepare({ media }) {
-                      return { title: 'Image', media }
+                    select: {media: 'image'},
+                    prepare({media}) {
+                      return {title: 'Image', media}
                     },
                   },
                 },
@@ -122,19 +122,19 @@ export default {
                       name: 'textEs',
                       type: 'array',
                       title: 'Text (Spanish)',
-                      of: [{ type: 'block' }],
+                      of: [{type: 'block'}],
                     },
                     {
                       name: 'textEn',
                       type: 'array',
                       title: 'Text (English)',
-                      of: [{ type: 'block' }],
+                      of: [{type: 'block'}],
                     },
                   ],
                   preview: {
-                    select: { subtitle: 'textEn' },
-                    prepare({ subtitle }) {
-                      return { title: 'Text', subtitle }
+                    select: {subtitle: 'textEn'},
+                    prepare({subtitle}) {
+                      return {title: 'Text', subtitle}
                     },
                   },
                 },
@@ -144,12 +144,13 @@ export default {
           preview: {
             select: {
               category: 'category.titleEn',
+              categoryOrder: 'category.order',
               modules: 'modules',
             },
-            prepare({ category, modules }) {
+            prepare({category, categoryOrder, modules}) {
               const count = modules?.length ?? 0
               return {
-                title: category ?? 'Phase',
+                title: categoryOrder && category ? `[${categoryOrder}] ${category}` : category ?? 'Stage',
                 subtitle: `${count} module${count === 1 ? '' : 's'}`,
               }
             },
@@ -163,7 +164,7 @@ export default {
           const unique = new Set(ids)
           return ids.length === unique.size
             ? true
-            : 'Each phase category can only be used once per project.'
+            : 'Each project stage can only be used once per project.'
         }),
     },
   ],

@@ -41,12 +41,12 @@ export const myStructure = (S) =>
                 .child(S.documentTypeList('project').title('Projects')),
 
               S.listItem()
-                .title('Phase Categories')
+                .title('Project Stages')
                 .icon(TagIcon)
                 .child(
                   S.documentTypeList('phaseCategory')
-                    .title('Phase Categories')
-                    .defaultOrdering([{ field: 'order', direction: 'asc' }])
+                    .title('Project Stages')
+                    .defaultOrdering([{field: 'order', direction: 'asc'}])
                 ),
             ])
         ),

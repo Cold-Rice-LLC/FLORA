@@ -2,8 +2,8 @@
 	let { children } = $props();
 </script>
 
-<section id="news-detail-panel">
-	<div class="flex justify-between items-center font-secondary p-sm">
+<section id="news-detail-panel" class="p-sm">
+	<div class="flex justify-between items-center font-secondary text-xs">
 		<p>Title</p>
 
 		<a href="/information">Cerrar / Close</a>
