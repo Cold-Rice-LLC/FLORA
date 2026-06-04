@@ -94,7 +94,7 @@
 	display: flex;
 	flex-direction: row;
 	height: 100svh;
-	padding-left: 33.333vw;
+	padding-left: 500px;
 }
 
 .featured-project {
