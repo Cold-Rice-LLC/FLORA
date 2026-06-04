@@ -5,6 +5,6 @@
 	let { data } = $props();
 </script>
 
-<DetailPanel>
+<DetailPanel {data}>
 	<ProjectDetail {data} />
 </DetailPanel>

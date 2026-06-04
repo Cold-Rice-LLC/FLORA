@@ -5,13 +5,13 @@
 
 	let { data } = $props();
 
-	let canonical = $derived(`${$page.url.origin}/index/${data.slug}`);
+	let canonical = $derived(`${$page.url.origin}/index/${data.project?.slug?.current}`);
 </script>
 
 <svelte:head>
 	<link rel="canonical" href={canonical} />
 </svelte:head>
 
-<DetailPanel>
+<DetailPanel {data}>
 	<ProjectDetail {data} />
 </DetailPanel>

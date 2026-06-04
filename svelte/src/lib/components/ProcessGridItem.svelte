@@ -9,7 +9,7 @@
 	);
 </script>
 
-<a href="/index/{item.project.slug.current}{params}" class="process-grid-item">
+<a href="/index/{item.project.slug.current}{params}#stage-{item.phase.category?.order}" class="process-grid-item">
 	<span class="label text-xs font-secondary">
 		{item.project.projectNumber} [{item.phase.category?.order}]
 	</span>
@@ -25,13 +25,12 @@
 		display: block;
 		aspect-ratio: 1;
 		overflow: hidden;
-		background-color: var(--color-grey-1);
 	}
 
 	.label {
 		position: absolute;
-		top: var(--spacing-sm);
-		left: var(--spacing-sm);
+		top: 0;
+		left: 0;
 		z-index: 1;
 	}
 

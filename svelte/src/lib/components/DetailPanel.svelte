@@ -1,18 +1,28 @@
 <script>
+	import { format, parseISO } from 'date-fns';
 	import { page } from '$app/stores';
 
-	let { children } = $props();
+	let { children, data } = $props();
 
 	let closeHref = $derived(
 		$page.url.pathname.startsWith('/index')
 			? `/index${$page.url.search}`
 			: '/'
 	);
+
+	let year = $derived(data?.project?.date ? format(parseISO(data.project.date), 'yyyy') : null);
 </script>
 
 <section id="index-detail-panel" class="p-sm">
-	<div class="flex justify-between items-center font-secondary py-base text-xs">
-		<p>Title</p>
+	<div class="detail-header flex justify-between items-start font-secondary text-xs">
+		<div class="flex gap-2xl">
+			<div class="flex gap-md">
+				{#if data?.project?.projectNumber}<span>{data.project.projectNumber}</span>{/if}
+				{#if data?.project?.title}<span>{data.project.title}</span>{/if}
+			</div>
+
+			{#if year}<span>{year}</span>{/if}
+		</div>
 
 		<a href={closeHref}>Cerrar / Close</a>
 	</div>
@@ -33,5 +43,11 @@
 		overscroll-behavior: none;
 		overflow-y: auto;
 		scrollbar-width: none;
+	}
+
+	.detail-header {
+		position: sticky;
+		top: 0px;
+		padding: 1.7rem 0;
 	}
 </style>
