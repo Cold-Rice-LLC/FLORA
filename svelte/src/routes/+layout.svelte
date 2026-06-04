@@ -27,7 +27,7 @@
 
 	afterNavigate(() => {
 		clearTimeout(loadingTimeout);
-		// NProgress.done();
+		NProgress.done();
 	});
 </script>
 
@@ -58,6 +58,7 @@
 							<Image item={project.featuredImage} />
 						</div>
 					{/if}
+					
 					<div class="featured-project-meta flex-none text-xs font-secondary flex gap-xl p-sm">
 						<div class="flex gap-md">
 							{#if project.projectNumber}<span>{project.projectNumber}</span>{/if}
