@@ -34,9 +34,10 @@ export default {
       title: 'Project Number',
     },
     {
-      name: 'year',
-      type: 'number',
-      title: 'Year',
+      name: 'date',
+      type: 'date',
+      title: 'Date',
+      description: 'Used for sorting. Year will be derived from this on the frontend.',
     },
     {
       name: 'introduction',
@@ -75,6 +76,12 @@ export default {
               components: {
                 input: ReferenceRadio,
               },
+            },
+            {
+              name: 'lastUpdated',
+              type: 'date',
+              title: 'Last Updated',
+              description: 'Set this when you add or update work on this stage. Used to sort the process grid.',
             },
             {
               name: 'modules',

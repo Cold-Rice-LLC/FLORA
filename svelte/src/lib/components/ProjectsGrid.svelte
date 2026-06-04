@@ -1,0 +1,11 @@
+<script>
+	import ProjectGridItem from '$lib/components/ProjectGridItem.svelte';
+
+	let { projects, params = '' } = $props();
+</script>
+
+<div class="grid grid-cols-4 gap-sm">
+	{#each projects as project (project._id)}
+		<ProjectGridItem {project} {params} />
+	{/each}
+</div>

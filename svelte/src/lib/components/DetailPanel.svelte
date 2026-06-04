@@ -3,7 +3,11 @@
 
 	let { children } = $props();
 
-	let closeHref = $derived($page.url.pathname.startsWith('/index') ? '/index' : '/');
+	let closeHref = $derived(
+		$page.url.pathname.startsWith('/index')
+			? `/index${$page.url.search}`
+			: '/'
+	);
 </script>
 
 <section id="index-detail-panel" class="p-sm">

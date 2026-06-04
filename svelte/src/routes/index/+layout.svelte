@@ -1,6 +1,9 @@
 <script>
 	import { page } from '$app/stores';
+	import Fuse from 'fuse.js';
 	import InfoPanel from '$lib/components/InfoPanel.svelte';
+	import ProcessGrid from '$lib/components/ProcessGrid.svelte';
+	import ProjectsGrid from '$lib/components/ProjectsGrid.svelte';
 
 	// props
 	let { children, data } = $props();
@@ -11,12 +14,61 @@
 	let search = $derived($page.url.searchParams.get('search') || '');
 	let activeStage = $derived($page.url.searchParams.get('stage') || null);
 
+	// search state
+	let searchValue = $state('');
+
+	// fuse instance — rebuilds when projects change
+	let fuse = $derived(
+		new Fuse(data.projects ?? [], {
+			keys: ['title'],
+			threshold: 0.4,
+			ignoreLocation: true,
+		})
+	);
+
 	// helpers
 	function stageHref(stage) {
 		const params = new URLSearchParams({ view: 'process' });
 		if (activeStage !== String(stage.order)) params.set('stage', stage.order);
 		return `/index?${params.toString()}`;
 	}
+
+	// process grid items — flatten phases, filter to those with images, sort by lastUpdated
+	let processItems = $derived(
+		(data.projects ?? [])
+			.flatMap((project) =>
+				(project.phases ?? [])
+					.filter((phase) =>
+						phase.modules?.some((m) => m._type === 'imageModule' && m.image?.asset)
+					)
+					.map((phase) => ({ project, phase }))
+			)
+			.filter((item) =>
+				activeStage ? String(item.phase.category?.order) === activeStage : true
+			)
+			.sort((a, b) => {
+				if (!a.phase.lastUpdated) return 1;
+				if (!b.phase.lastUpdated) return -1;
+				return new Date(b.phase.lastUpdated) - new Date(a.phase.lastUpdated);
+			})
+	);
+
+	// projects grid — filter by search, sort by date
+	let filteredProjects = $derived(
+		(data.projects ?? [])
+			.filter((p) => {
+				if (!searchValue) return true;
+				const results = fuse.search(searchValue);
+				return results.some((r) => r.item._id === p._id);
+			})
+			.sort((a, b) => {
+				if (!a.date) return 1;
+				if (!b.date) return -1;
+				return order === 'oldest'
+					? new Date(a.date) - new Date(b.date)
+					: new Date(b.date) - new Date(a.date);
+			})
+	);
 </script>
 
 <InfoPanel href="/index">
@@ -84,20 +136,21 @@
 						</div>
 					</div>
 
-					<div class="search-forms col-span-2">
-						<form>
-							<input type="text" placeholder="Buscar">
-						</form>
-
-						<form>
-							<input type="text" placeholder="Search">
-						</form>
+					<div class="search-forms col-span-2 flex flex-col items-start">
+						<input type="text" placeholder="Buscar" bind:value={searchValue} />
+						<input type="text" placeholder="Search" bind:value={searchValue} />
 					</div>
 				</div>
 			{/if}
 		</div>
 
-		<div class="projects"></div>
+		<div class="projects mt-base">
+			{#if view === 'process'}
+				<ProcessGrid items={processItems} params={$page.url.search} />
+			{:else if view === 'projects'}
+				<ProjectsGrid projects={filteredProjects} params={$page.url.search} />
+			{/if}
+		</div>
 	</div>
 </InfoPanel>
 
