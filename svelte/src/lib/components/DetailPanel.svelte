@@ -49,5 +49,6 @@
 		position: sticky;
 		top: 0px;
 		padding: 1.7rem 0;
+		z-index: 50;
 	}
 </style>
