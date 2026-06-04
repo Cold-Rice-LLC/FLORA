@@ -9,7 +9,7 @@
 	let isBackground = $derived($page.url.pathname !== href);
 </script>
 
-<section id="index-info-panel">
+<section id="index-info-panel" style={isBackground ? 'overflow-y: hidden' : ''}>
 	<Nav id="info-nav" class="p-xs" />
 
 	{#if isBackground}
