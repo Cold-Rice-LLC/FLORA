@@ -1,12 +1,12 @@
 <script>
-	import { page } from '$app/state';
+	import { page } from '$app/stores';
 	import Nav from '$lib/components/Nav.svelte';
 
 	// props
 	let { children, href } = $props();
 
 	// derived
-	let isBackground = $derived(page.url.pathname !== href);
+	let isBackground = $derived($page.url.pathname !== href);
 </script>
 
 <section id="index-info-panel">

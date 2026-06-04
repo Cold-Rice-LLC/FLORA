@@ -68,6 +68,7 @@
 
 :root {
 	--underline-thickness: .05em;
+	--underline-thickness-alt: .09em;
 	--underline-offset: .03em;
 }
 

@@ -3,13 +3,13 @@
 	import NProgress from 'nprogress';
 	import 'nprogress/nprogress.css';
 	import { beforeNavigate, afterNavigate } from '$app/navigation';
-	import { page } from '$app/state';
+	import { page } from '$app/stores';
 	import Nav from '$lib/components/Nav.svelte';
 
 	// props
 	let { children } = $props();
 
-	let isBackground = $derived(page.url.pathname !== '/');
+	let isBackground = $derived($page.url.pathname !== '/');
 
 	// Vars
 	let loadingTimeout;
@@ -19,13 +19,13 @@
 
 	// handle navigation
 	beforeNavigate(() => {
-		loadingTimeout = setTimeout(() => NProgress.start(), 200);
-		// NProgress.start();
+		// loadingTimeout = setTimeout(() => NProgress.start(), 200);
+		NProgress.start();
 	});
 
 	afterNavigate(() => {
-		clearTimeout(loadingTimeout);
-		// NProgress.done();
+		// clearTimeout(loadingTimeout);
+		NProgress.done();
 	});
 </script>
 
