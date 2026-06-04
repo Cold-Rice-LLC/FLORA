@@ -2,7 +2,7 @@
 	import Image from '$lib/components/Image.svelte';
 	import Portable from '$lib/components/Portable.svelte';
 
-	let { module, stageOrder, imageIndex } = $props();
+	let { module, stageOrder, imageIndex, onImageClick } = $props();
 
 	let landscape = $derived(() => {
 		const d = module.image?.asset?.metadata?.dimensions;
@@ -19,7 +19,9 @@
 		<div class="col-span-{imgCols}">
 			<span class="text-xs font-secondary">[{stageOrder}.{imageIndex}]</span>
 			{#if module.image?.asset}
-				<Image item={module.image} />
+				<button class="image-btn" onclick={onImageClick}>
+					<Image item={module.image} />
+				</button>
 			{/if}
 		</div>
 	</div>
@@ -36,3 +38,12 @@
 		</div>
 	{/if}
 </div>
+
+<style>
+	.image-btn {
+		display: block;
+		width: 100%;
+		cursor: pointer;
+		outline: none;
+	}
+</style>
