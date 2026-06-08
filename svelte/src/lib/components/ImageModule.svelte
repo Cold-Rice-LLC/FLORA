@@ -6,7 +6,7 @@
 </script>
 
 <section class="grid grid-cols-6 gap-base">
-	<div class="col-span-4 col-start-2 flex flex-col items-center text-center gap-sm">
+	<div class="col-span-6 lg:col-span-4 lg:col-start-2 flex flex-col items-center text-center gap-sm">
 		{#if module.image?.asset}
 			<Image item={module.image} />
 		{/if}

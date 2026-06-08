@@ -37,17 +37,17 @@
 	}
 </script>
 
-<div class="project-detail space-y-xl">
+<div class="project-detail space-y-lg lg:space-y-xl">
 	{#if data.project?.introduction}
 		<section class="grid grid-cols-8 gap-sm">
-			<div class="col-span-8 rich-text text-md font-secondary">
+			<div class="col-span-8 rich-text text-sm lg:text-md font-secondary">
 				<Portable value={data.project.introduction} />
 			</div>
 		</section>
 	{/if}
 
 	{#each (data.project?.phases ?? []) as phase (phase._key)}
-		<section id="stage-{phase.category?.order}" class="space-y-xl">
+		<section id="stage-{phase.category?.order}" class="space-y-lg lg:space-y-xl">
 			{#each (phase.modules ?? []) as module (module._key)}
 				{#if module._type === 'imageModule'}
 					{@const imageIndex = getImageModules(phase.modules).findIndex((m) => m._key === module._key) + 1}

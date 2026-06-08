@@ -4,7 +4,7 @@
 	let { module } = $props();
 </script>
 
-<div class="grid grid-cols-8 gap-sm text-md font-secondary">
+<div class="grid grid-cols-8 gap-sm text-sm lg:text-md font-secondary">
 	<div class="col-span-8 space-y-[1lh]">
 		{#if module.textEs}
 			<div class="rich-text"><Portable value={module.textEs} /></div>

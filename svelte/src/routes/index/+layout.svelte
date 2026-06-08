@@ -73,10 +73,10 @@
 
 <InfoPanel href="/index">
 	<!-- Index list content goes here (loaded via +layout.js) -->
-	<div class="pt-[150px]">
-		<div class="filters grid grid-cols-8 gap-sm">
-			<div class="col-span-2 text-xs font-secondary">
-				<div class="flex gap-1">
+	<div class="pt-[100px] lg:pt-[150px]">
+		<div class="filters grid grid-cols-6 lg:grid-cols-8 gap-sm">
+			<div class="col-span-2 text-xs font-secondary space-y-[1lh] lg:space-y-0">
+				<div class="flex flex-col lg:flex-row lg:gap-1">
 					<p>Vista:</p>
 
 					<div>
@@ -85,7 +85,7 @@
 					</div>
 				</div>
 
-				<div class="flex gap-1">
+				<div class="flex flex-col lg:flex-row lg:gap-1">
 					<p>View:</p>
 					
 					<div>
@@ -96,28 +96,28 @@
 			</div>
 
 			{#if view === 'process'}
-				<div class="project-stages col-span-6 text-xs font-secondary">
-					<div class="flex gap-1">
+				<div class="project-stages col-span-4 lg:col-span-6 text-xs font-secondary space-y-[1lh] lg:space-y-0">
+					<div class="flex flex-col lg:flex-row lg:gap-1">
 						<p>Filtrar:</p>
-						<div>
+						<div class="flex flex-col lg:block">
 							{#each data.stages as stage, i (stage._id)}
-								<a href={stageHref(stage)} class={activeStage === String(stage.order) ? 'active' : ''}>[{stage.order}] {stage.titleEs}</a>{#if i < data.stages.length - 1}<span>,&nbsp;</span> {/if}
+								<a href={stageHref(stage)} class:active={activeStage === String(stage.order)} class="inline-flex gap-2 lg:gap-1"><span class="flex-none">[{stage.order}]</span><span class="flex-1 lg:flex-none">{stage.titleEs}</span></a>{#if i < data.stages.length - 1}<span class="hidden lg:inline">,&nbsp;</span> {/if}
 							{/each}
 						</div>
 					</div>
-					<div class="flex gap-1">
+					<div class="flex flex-col lg:flex-row lg:gap-1">
 						<p>Filter:</p>
-						<div>
+						<div class="flex flex-col lg:block">
 							{#each data.stages as stage, i (stage._id)}
-								<a href={stageHref(stage)} class={activeStage === String(stage.order) ? 'active' : ''}>[{stage.order}] {stage.titleEn}</a>{#if i < data.stages.length - 1}<span>,&nbsp;</span> {/if}
+								<a href={stageHref(stage)} class:active={activeStage === String(stage.order)} class="inline-flex gap-2 lg:gap-1"><span class="flex-none">[{stage.order}]</span><span class="flex-1 lg:flex-none">{stage.titleEn}</span></a>{#if i < data.stages.length - 1}<span class="hidden lg:inline">,&nbsp;</span> {/if}
 							{/each}
 						</div>
 					</div>
 				</div>
 			{:else if view === 'projects'}
-				<div class="projects-filters col-span-6 text-xs font-secondary grid grid-cols-6 gap-sm">
-					<div class="col-span-2">
-						<div class="flex gap-1">
+				<div class="projects-filters col-span-4 lg:col-span-6 text-xs font-secondary grid grid-cols-6 gap-sm">
+					<div class="col-span-4 lg:col-span-2 space-y-[1lh] lg:space-y-0">
+						<div class="flex flex-col lg:flex-row lg:gap-1">
 							<p>Ordenar por:</p>
 							
 							<div>
@@ -126,7 +126,7 @@
 							</div>
 						</div>
 
-						<div class="flex gap-1">
+						<div class="flex flex-col lg:flex-row lg:gap-1">
 							<p>Sort:</p>
 							
 							<div>
@@ -136,7 +136,7 @@
 						</div>
 					</div>
 
-					<div class="search-forms col-span-2 flex flex-col items-start">
+					<div class="search-forms col-span-2 hidden lg:flex flex-col items-start">
 						<input type="text" placeholder="Buscar" bind:value={searchValue} />
 						<input type="text" placeholder="Search" bind:value={searchValue} />
 					</div>

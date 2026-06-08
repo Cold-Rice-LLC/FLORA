@@ -4,7 +4,7 @@
 	let { module } = $props();
 </script>
 
-<section class="grid grid-cols-6 gap-base text-sm font-secondary">
+<section class="grid grid-cols-6 gap-sm lg:gap-base text-xs lg:text-sm font-secondary">
 	<div class="col-span-3">
 		{#if module.textEs}
 			<div class="rich-text">

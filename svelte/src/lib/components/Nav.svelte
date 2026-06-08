@@ -9,10 +9,10 @@
 
 <header {id} class={className}>
 	<nav>
-		<ul class="flex items-center gap-2 leading-none">
-			<a href="/">FLORA:</a>
+		<ul class="flex flex-col lg:flex-row items-start lg:items-center lg:gap-2 leading-none">
+			<a href="/">FLORA<span class="hidden lg:inline">:</span></a>
 
-			<li>
+			<li class="mt-base lg:mt-0">
 				<a href="/index" class={indexActive ? 'active' : ''}>Índice / Index</a><span>,</span>
 			</li>
 

@@ -4,7 +4,7 @@
 	let { projects, params = '' } = $props();
 </script>
 
-<div class="grid grid-cols-4 gap-sm">
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-sm">
 	{#each projects as project (project._id)}
 		<ProjectGridItem {project} {params} />
 	{/each}

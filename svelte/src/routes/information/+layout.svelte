@@ -9,8 +9,8 @@
 
 <InfoPanel href="/information">
 	<!-- Information content goes here (loaded via +layout.js) -->
-	<div class="grid grid-cols-8 gap-sm pt-[150px]">
-		<div class="col-span-2 space-y-[1lh]">
+	<div class="grid grid-cols-6 lg:grid-cols-8 gap-[50px] lg:gap-sm pt-[100px] lg:pt-[150px]">
+		<div class="order-2 lg:order-1 col-span-6 lg:col-span-2 space-y-[1lh]">
 			<h2 class="text-xs font-secondary">Noticias / News</h2>
 
 			{#if data.news.length > 0}
@@ -24,8 +24,8 @@
 			{/if}
 		</div>
 
-		<div class="col-span-4 col-start-5 text-xs font-secondary">
-			<div class="information-text space-y-[100px]">
+		<div class="order-1 lg:order-2 col-span-6 lg:col-span-4 lg:col-start-5 text-xs font-secondary">
+			<div class="information-text space-y-[50px] lg:space-y-[100px]">
 				{#if data.informationPage?.infoTextEs}
 					<div class="rich-text">
 						<Portable value={data.informationPage?.infoTextEs} />

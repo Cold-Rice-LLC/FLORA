@@ -78,10 +78,14 @@ html {
 }
 
 body {
-	font-size: var(--text-lg);
+	font-size: var(--text-md);
 	line-height: var(--text-lg--leading);
 	letter-spacing: var(--tracking);
 	overflow-y: hidden;
+
+	@media (min-width: 1024px) {
+		font-size: var(--text-lg);
+	}
 
   #nprogress .bar {
     height: 2px;

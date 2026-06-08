@@ -34,7 +34,7 @@
 <style>
 	#news-detail-panel {
 		position: fixed;
-		width: calc(100% - (var(--spacing-lg) * 8));
+		width: calc(100% - (var(--spacing-sm) * 2));
 		height: calc(100svh - (var(--spacing-lg) * 6));
 		top: 50%;
 		left: 50%;
@@ -44,6 +44,11 @@
 		overflow-y: auto;
 		overscroll-behavior: none;
 		scrollbar-width: none;
+
+		@media (min-width: 1024px) {
+			width: calc(100% - (var(--spacing-lg) * 8));
+			height: calc(100svh - (var(--spacing-lg) * 6));
+		}
 	}
 
 	.news-detail-header {

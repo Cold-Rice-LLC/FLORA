@@ -35,7 +35,7 @@
 	<title>FLORA</title>
 </svelte:head>
 
-<Nav id="main-nav" class="fixed top-0 left-0 w-full py-base px-lg" />
+<Nav id="main-nav" class="fixed top-0 left-0 w-full py-sm lg:py-base px-base lg:px-lg" />
 
 <main>
 	{#if isBackground}
@@ -95,7 +95,11 @@
 	display: flex;
 	flex-direction: row;
 	height: 100svh;
-	padding-left: 500px;
+	padding-left: 260px;
+	
+	@media (min-width: 1024px) {
+		padding-left: 500px;
+	}
 }
 
 .featured-project {

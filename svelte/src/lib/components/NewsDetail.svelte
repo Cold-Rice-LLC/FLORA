@@ -5,7 +5,7 @@
 	let { data } = $props();
 </script>
 
-<article class="modules space-y-xl">
+<article class="modules space-y-lg lg:space-y-xl">
 	{#each data.news.modules as module (module._key)}
 		{#if module._type === 'imageModule'}
 			<ImageModule {module} />
