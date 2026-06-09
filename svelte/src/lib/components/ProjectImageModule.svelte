@@ -10,13 +10,13 @@
 		return d.width >= d.height;
 	});
 
-	let imgCols = $derived(landscape() ? 4 : 3);
-	let captionCols = $derived(landscape() ? 5 : 4);
+	let imgColsClass = $derived(landscape() ? 'col-span-8 lg:col-span-4' : 'col-span-8 lg:col-span-3');
+	let captionColsClass = $derived(landscape() ? 'col-span-8 lg:col-span-5' : 'col-span-8 lg:col-span-4');
 </script>
 
 <div class="flex flex-col gap-sm">
 	<div class="grid grid-cols-8 gap-sm">
-		<div class="col-span-8 lg:col-span-{imgCols}">
+		<div class={imgColsClass}>
 			<span class="text-xs font-secondary">[{stageOrder}.{imageIndex}]</span>
 			{#if module.image?.asset}
 				<button class="image-btn" onclick={onImageClick}>
@@ -27,7 +27,7 @@
 	</div>
 	{#if module.captionEs || module.captionEn}
 		<div class="grid grid-cols-8 gap-sm">
-			<div class="col-span-8 lg:col-span-{captionCols} text-xs font-secondary">
+			<div class="{captionColsClass} text-xs font-secondary">
 				{#if module.captionEs}
 					<div class="rich-text"><Portable value={module.captionEs} /></div>
 				{/if}
