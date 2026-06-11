@@ -12,6 +12,7 @@ export const load = async () => {
 				slug,
 				projectNumber,
 				date,
+				previewText,
 				featuredImage { asset-> },
 				phases[] {
 					_key,
