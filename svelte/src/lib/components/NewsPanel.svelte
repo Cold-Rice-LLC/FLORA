@@ -35,7 +35,7 @@
 	#news-detail-panel {
 		position: fixed;
 		width: calc(100% - (var(--spacing-sm) * 2));
-		height: calc(100svh - (var(--spacing-lg) * 6));
+		height: calc(100svh - (var(--spacing-sm) * 24));
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);

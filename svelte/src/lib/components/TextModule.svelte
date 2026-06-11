@@ -5,14 +5,14 @@
 </script>
 
 <section class="grid grid-cols-6 gap-sm lg:gap-base text-xs-minus lg:text-xs font-secondary">
-	<div class="col-span-3">
+	<div class="col-span-6 lg:col-span-3">
 		{#if module.textEs}
 			<div class="rich-text">
 				<Portable value={module.textEs} />
 			</div>
 		{/if}
 	</div>
-	<div class="col-span-3">
+	<div class="col-span-6 lg:col-span-3">
 		{#if module.textEn}
 			<div class="rich-text">
 				<Portable value={module.textEn} />

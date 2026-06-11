@@ -107,8 +107,8 @@
 					</div>
 				</div>
 			{:else if view === 'projects'}
-				<div class="projects-filters col-span-4 lg:col-span-6 text-xs-minus lg:text-xs font-secondary grid grid-cols-6 gap-sm">
-					<div class="col-span-4 lg:col-span-2 space-y-[1lh] lg:space-y-0">
+				<div class="projects-filters col-span-4 lg:col-span-6 text-xs-minus lg:text-xs font-secondary grid grid-cols-4 lg:grid-cols-6 gap-sm">
+					<div class="col-span-3 lg:col-span-2 space-y-[1lh] lg:space-y-0">
 						<div class="flex flex-col lg:flex-row lg:gap-1">
 							<p>Ordenar por:</p>
 							
@@ -128,9 +128,9 @@
 						</div>
 					</div>
 
-					<div class="search-forms col-span-2 hidden lg:flex flex-col items-start">
-						<input type="text" placeholder="Buscar" bind:value={searchValue} />
-						<input type="text" placeholder="Search" bind:value={searchValue} />
+					<div class="search-forms col-span-1 lg:col-span-2 flex flex-col items-end lg:items-start">
+						<input type="text" placeholder="Buscar" bind:value={searchValue} class="w-full text-right lg:text-left"/>
+						<input type="text" placeholder="Search" bind:value={searchValue} class="w-full text-right lg:text-left"/>
 					</div>
 				</div>
 			{/if}
