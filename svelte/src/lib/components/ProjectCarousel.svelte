@@ -73,6 +73,7 @@
 		const deltaX = e.changedTouches[0].clientX - startX;
 		const deltaY = e.changedTouches[0].clientY - startY;
 		if (Math.abs(deltaX) <= threshold && Math.abs(deltaY) <= threshold) {
+			e.preventDefault(); // prevent synthetic click firing on content below after carousel closes
 			activeIndex = -1;
 		}
 	}
