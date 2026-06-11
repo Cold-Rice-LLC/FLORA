@@ -67,7 +67,7 @@
 	<!-- Index list content goes here (loaded via +layout.js) -->
 	<div class="pt-[100px] lg:pt-[150px]">
 		<div class="filters grid grid-cols-6 lg:grid-cols-8 gap-sm">
-			<div class="col-span-2 text-xs font-secondary space-y-[1lh] lg:space-y-0">
+			<div class="col-span-2 text-xs-minus lg:text-xs font-secondary space-y-[1lh] lg:space-y-0">
 				<div class="flex flex-col lg:flex-row lg:gap-1">
 					<p>Vista:</p>
 
@@ -88,7 +88,7 @@
 			</div>
 
 			{#if view === 'process'}
-				<div class="project-stages col-span-4 lg:col-span-6 text-xs font-secondary space-y-[1lh] lg:space-y-0">
+				<div class="project-stages col-span-4 lg:col-span-6 text-xs-minus lg:text-xs font-secondary space-y-[1lh] lg:space-y-0">
 					<div class="flex flex-col lg:flex-row lg:gap-1">
 						<p>Filtrar:</p>
 						<div class="flex flex-col lg:block">
@@ -107,7 +107,7 @@
 					</div>
 				</div>
 			{:else if view === 'projects'}
-				<div class="projects-filters col-span-4 lg:col-span-6 text-xs font-secondary grid grid-cols-6 gap-sm">
+				<div class="projects-filters col-span-4 lg:col-span-6 text-xs-minus lg:text-xs font-secondary grid grid-cols-6 gap-sm">
 					<div class="col-span-4 lg:col-span-2 space-y-[1lh] lg:space-y-0">
 						<div class="flex flex-col lg:flex-row lg:gap-1">
 							<p>Ordenar por:</p>

@@ -12,7 +12,7 @@
 </script>
 
 <section id="news-detail-panel" class="p-xs space-y-xl">
-	<div class="news-detail-header flex justify-between items-start font-secondary text-xs">
+	<div class="news-detail-header flex justify-between items-start font-secondary text-xs-minus lg:text-xs">
 		<div>
 			{#if formattedDate || data?.news?.time}
 				<p>

@@ -13,7 +13,7 @@
 	let isActive = $derived($page.url.pathname === `/information/${news.slug.current}`);
 </script>
 
-<article class="news-item text-xs font-secondary" class:opacity-30={isActive}>
+<article class="news-item text-xs-minus lg:text-xs font-secondary" class:opacity-30={isActive}>
   <a href="/information/{news.slug.current}">
     {#if formattedDate || news.time}
       <p class="date">

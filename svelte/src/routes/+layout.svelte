@@ -80,8 +80,8 @@
 						</div>
 					{/if}
 					
-					<div class="featured-project-meta flex-none text-xs font-secondary flex gap-xl p-sm">
-						<div class="flex gap-md">
+					<div class="featured-project-meta flex-none text-xs-minus lg:text-xs font-secondary flex gap-base lg:gap-[16vw] p-sm">
+						<div class="flex gap-sm lg:gap-[3.2vw]">
 							{#if project.projectNumber}<span>{project.projectNumber}</span>{/if}
 							{#if project.title}<span>{project.title}</span>{/if}
 						</div>

@@ -40,6 +40,12 @@ export default {
       description: 'Used for sorting. Year will be derived from this on the frontend.',
     },
     {
+      name: 'previewText',
+      type: 'text',
+      title: 'Preview Text',
+      description: 'Shows up when the project is hovered over in the projects/process grid.',
+    },
+    {
       name: 'introduction',
       type: 'array',
       title: 'Introduction',

@@ -13,12 +13,12 @@
 		
 		<div class="space-y-base">
 			{#if module.captionEs}
-				<div class="rich-text text-xs font-secondary">
+				<div class="rich-text text-xs-minus lg:text-xs font-secondary">
 					<Portable value={module.captionEs} />
 				</div>
 			{/if}
 			{#if module.captionEn}
-				<div class="rich-text text-xs font-secondary">
+				<div class="rich-text text-xs-minus lg:text-xs font-secondary">
 					<Portable value={module.captionEn} />
 				</div>
 			{/if}

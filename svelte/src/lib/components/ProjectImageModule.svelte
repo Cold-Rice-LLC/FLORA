@@ -17,7 +17,7 @@
 <div class="flex flex-col gap-sm">
 	<div class="grid grid-cols-8 gap-sm">
 		<div class={imgColsClass}>
-			<span class="text-xs font-secondary">[{stageOrder}.{imageIndex}]</span>
+			<span class="text-xs-minus lg:text-xs font-secondary">[{stageOrder}.{imageIndex}]</span>
 			{#if module.image?.asset}
 				<button class="image-btn" onclick={onImageClick}>
 					<Image item={module.image} />
@@ -27,7 +27,7 @@
 	</div>
 	{#if module.captionEs || module.captionEn}
 		<div class="grid grid-cols-8 gap-sm">
-			<div class="{captionColsClass} text-xs font-secondary">
+			<div class="{captionColsClass} text-xs-minus lg:text-xs font-secondary">
 				{#if module.captionEs}
 					<div class="rich-text"><Portable value={module.captionEs} /></div>
 				{/if}

@@ -14,9 +14,9 @@
 </script>
 
 <section id="index-detail-panel">
-	<div class="detail-header flex justify-between items-start font-secondary text-xs">
-		<div class="flex gap-lg lg:gap-2xl">
-			<div class="flex gap-base lg:gap-md">
+	<div class="detail-header flex justify-between items-start font-secondary text-xs-minus lg:text-xs">
+		<div class="flex gap-base lg:gap-[16vw]">
+			<div class="flex gap-sm lg:gap-[3.2vw]">
 				{#if data?.project?.projectNumber}<span>{data.project.projectNumber}</span>{/if}
 				{#if data?.project?.title}<span>{data.project.title}</span>{/if}
 			</div>

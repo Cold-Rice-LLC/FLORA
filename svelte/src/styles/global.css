@@ -36,10 +36,14 @@
 }
 
 @theme {
+	--text-xs-minus: 1.2rem;
+	--text-xs-minus--line-height: 1.103;
 	--text-xs: 1.333rem;     /* 15pt */
 	--text-xs--line-height: 1.103;
 	--text-sm: 1.422rem;     /* 16pt */
 	--text-sm--line-height: 1.125;
+	--text-base-minus: 1.6rem;
+	--text-base-minus--line-height: 1.105;
 	--text-base: 1.689rem;   /* 19pt */
 	--text-base--line-height: 1.105;
 	--text-md: 1.778rem;     /* 20pt */
@@ -78,7 +82,7 @@ html {
 }
 
 body {
-	font-size: var(--text-md);
+	font-size: var(--text-base-minus);
 	line-height: var(--text-lg--leading);
 	letter-spacing: var(--tracking);
 	overflow-y: hidden;
