@@ -2,7 +2,7 @@
 	import '../styles/index.css';
 	import NProgress from 'nprogress';
 	import 'nprogress/nprogress.css';
-	import { beforeNavigate, afterNavigate } from '$app/navigation';
+	import { beforeNavigate, afterNavigate, goto } from '$app/navigation';
 	import { format, parseISO } from 'date-fns';
 	import { page } from '$app/stores';
 	import Nav from '$lib/components/Nav.svelte';
@@ -12,6 +12,25 @@
 	let { children, data } = $props();
 
 	let isBackground = $derived($page.url.pathname !== '/');
+
+	// Global Escape — closes the topmost visible layer
+	function onKeyDown(e) {
+		if (e.key !== 'Escape') return;
+		// Carousel handles its own Escape; don't double-navigate
+		if (document.querySelector('.carousel.active')) return;
+
+		const { pathname, search } = $page.url;
+		if (pathname.startsWith('/information/') || pathname.startsWith('/news/')) {
+			goto('/information');
+		} else if (pathname.startsWith('/index/')) {
+			goto(`/index${search}`);
+		} else if (pathname.startsWith('/projects/')) {
+			goto('/');
+		} else if (pathname !== '/') {
+			// /index or /information base — InfoPanel is the top layer
+			goto('/');
+		}
+	}
 
 	// Vars
 	let loadingTimeout;
@@ -30,6 +49,8 @@
 		NProgress.done();
 	});
 </script>
+
+<svelte:window onkeydown={onKeyDown} />
 
 <svelte:head>
 	<title>FLORA</title>
