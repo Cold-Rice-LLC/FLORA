@@ -13,7 +13,7 @@
 	let year = $derived(data?.project?.date ? format(parseISO(data.project.date), 'yyyy') : null);
 </script>
 
-<section id="index-detail-panel" class="p-sm">
+<section id="index-detail-panel">
 	<div class="detail-header flex justify-between items-start font-secondary text-xs">
 		<div class="flex gap-lg lg:gap-2xl">
 			<div class="flex gap-base lg:gap-md">
@@ -33,7 +33,7 @@
 <style>
 	#index-detail-panel {
 		position: fixed;
-		width: calc(100% - (var(--spacing-base) * 4));
+		width: calc(100% - (var(--spacing-xl) * 2));
 		height: 100svh;
 		top: 50%;
 		left: 50%;
@@ -43,20 +43,20 @@
 		overscroll-behavior: none;
 		overflow-y: auto;
 		scrollbar-width: none;
+		padding: var(--spacing-base);
 
 		@media (min-width: 1024px) {
-			width: calc(100% - (var(--spacing-lg) * 4));
+			width: calc(100% - (var(--spacing-2xl) * 2));
 		}
 	}
 
 	.detail-header {
 		position: sticky;
 		top: 0px;
-		padding: 0.7rem 0 2.5rem 0;
 		z-index: 50;
+	}
 
-		@media (min-width: 1024px) {
-			padding: 1.7rem 0;
-		}
+	:global(.detail-header + *) {
+		margin-top: var(--spacing-base);
 	}
 </style>

@@ -48,7 +48,7 @@ export default {
     {
       name: 'phases',
       type: 'array',
-      title: 'Project Stages',
+      title: 'Process Stages',
       description: 'Add one entry per stage. Each project stage can only be used once.',
       of: [
         {
@@ -81,7 +81,8 @@ export default {
               name: 'lastUpdated',
               type: 'date',
               title: 'Last Updated',
-              description: 'Set this when you add or update work on this stage. Used to sort the process grid.',
+              description:
+                'Set this when you add or update work on this stage. Used to sort the process grid.',
             },
             {
               name: 'modules',
@@ -157,7 +158,10 @@ export default {
             prepare({category, categoryOrder, modules}) {
               const count = modules?.length ?? 0
               return {
-                title: categoryOrder && category ? `[${categoryOrder}] ${category}` : category ?? 'Stage',
+                title:
+                  categoryOrder && category
+                    ? `[${categoryOrder}] ${category}`
+                    : (category ?? 'Stage'),
                 subtitle: `${count} module${count === 1 ? '' : 's'}`,
               }
             },

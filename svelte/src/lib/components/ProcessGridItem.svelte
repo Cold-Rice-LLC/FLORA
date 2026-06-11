@@ -9,7 +9,7 @@
 	);
 </script>
 
-<a href="/index/{item.project.slug.current}{params}#stage-{item.phase.category?.order}" class="process-grid-item">
+<a href="/index/{item.project.slug.current}{params}" class="process-grid-item">
 	<span class="label text-xs font-secondary">
 		{item.project.projectNumber} [{item.phase.category?.order}]
 	</span>

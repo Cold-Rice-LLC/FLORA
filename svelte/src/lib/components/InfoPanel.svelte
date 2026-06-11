@@ -10,7 +10,7 @@
 </script>
 
 <section id="index-info-panel" style={isBackground ? 'overflow-y: hidden' : ''}>
-	<Nav id="info-nav" class="p-xs" />
+	<Nav id="info-nav" class="p-sm" />
 
 	{#if isBackground}
 		<a href={href} class="panel-overlay">
@@ -18,7 +18,7 @@
 		</a>
 	{/if}
 
-	<div class="p-xs">
+	<div class="p-sm">
 		{@render children?.()}
 	</div>
 </section>
@@ -26,7 +26,7 @@
 <style>
 	#index-info-panel {
 		position: fixed;
-		width: calc(100% - (var(--spacing-base) * 2));
+		width: calc(100% - (var(--spacing-md) * 2));
 		height: calc(100svh - (var(--spacing-sm) * 2));
 		top: 50%;
 		left: 50%;
@@ -39,7 +39,7 @@
 
 		@media (min-width: 1024px) {
 			width: calc(100% - (var(--spacing-lg) * 2));
-			height: calc(100svh - (var(--spacing-base) * 2));
+			height: calc(100svh - (var(--spacing-sm) * 2));
 		}
 	}
 
@@ -53,9 +53,9 @@
 	:global(#info-nav) {
 		position: sticky;
 		top: 0px;
-		background: rgb(253 245 231 / 95%);
+		/* background: rgb(253 245 231 / 95%); */
 
-		&::before {
+		/* &::before {
 			content: '';
 			position: absolute;
 			height: 100px;
@@ -63,7 +63,6 @@
 			bottom: 0px;
 			left: 0px;
 			transform: translateY(100%);
-			/* ease-out gradient via larsenwork.com/easing-gradients */
 			background: linear-gradient(
 				to bottom,
 				rgba(253, 245, 231, 0.95)  0%,
@@ -84,6 +83,6 @@
 				rgba(253, 245, 231, 0)     100%
 			);
 			z-index: -1;
-		}
+		} */
 	}
 </style>

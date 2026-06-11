@@ -1,6 +1,5 @@
 <script>
 	import { page } from '$app/stores';
-	import Fuse from 'fuse.js';
 	import InfoPanel from '$lib/components/InfoPanel.svelte';
 	import ProcessGrid from '$lib/components/ProcessGrid.svelte';
 	import ProjectsGrid from '$lib/components/ProjectsGrid.svelte';
@@ -16,15 +15,6 @@
 
 	// search state
 	let searchValue = $state('');
-
-	// fuse instance — rebuilds when projects change
-	let fuse = $derived(
-		new Fuse(data.projects ?? [], {
-			keys: ['title'],
-			threshold: 0.4,
-			ignoreLocation: true,
-		})
-	);
 
 	// helpers
 	function stageHref(stage) {
@@ -58,8 +48,10 @@
 		(data.projects ?? [])
 			.filter((p) => {
 				if (!searchValue) return true;
-				const results = fuse.search(searchValue);
-				return results.some((r) => r.item._id === p._id);
+				const q = searchValue.toLowerCase();
+				const titleMatch = p.title?.toLowerCase().includes(q);
+				const numberMatch = p.projectNumber != null && String(p.projectNumber).includes(q);
+				return titleMatch || numberMatch;
 			})
 			.sort((a, b) => {
 				if (!a.date) return 1;

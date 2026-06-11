@@ -25,7 +25,7 @@ export const myStructure = (S) =>
                 .title('Information')
                 .icon(InfoOutlineIcon)
                 .child(S.document().schemaType('informationPage').documentId('informationPage')),
-            ])
+            ]),
         ),
 
       S.listItem()
@@ -41,14 +41,14 @@ export const myStructure = (S) =>
                 .child(S.documentTypeList('project').title('Projects')),
 
               S.listItem()
-                .title('Project Stages')
+                .title('Process Stages')
                 .icon(TagIcon)
                 .child(
                   S.documentTypeList('phaseCategory')
-                    .title('Project Stages')
-                    .defaultOrdering([{field: 'order', direction: 'asc'}])
+                    .title('Process Stages')
+                    .defaultOrdering([{field: 'order', direction: 'asc'}]),
                 ),
-            ])
+            ]),
         ),
 
       S.listItem()
@@ -57,6 +57,6 @@ export const myStructure = (S) =>
         .child(
           S.documentTypeList('news')
             .title('News')
-            .defaultOrdering([{field: 'date', direction: 'desc'}])
+            .defaultOrdering([{field: 'date', direction: 'desc'}]),
         ),
     ])

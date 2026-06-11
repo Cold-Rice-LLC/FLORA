@@ -55,12 +55,12 @@
   --color-grey-1: #b2b3b2;
 
 	--spacing-xs: 0.5rem;
-  --spacing-sm: 1rem;
-	--spacing-base: 2rem;
-  --spacing-md: 3rem;
-  --spacing-lg: 4rem;
-  --spacing-xl: 5rem;
-  --spacing-2xl: 10rem;
+  --spacing-sm: 0.9rem; /* Base Unit */
+	--spacing-base: 1.8rem;
+  --spacing-md: 2.7rem;
+  --spacing-lg: 3.6rem;
+  --spacing-xl: 4.5rem;
+  --spacing-2xl: 9rem;
 
 	--font-primary: 'Times', sans-serif;
 	--font-secondary: 'UniversLT', sans-serif;

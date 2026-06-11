@@ -35,7 +35,7 @@
 	<title>FLORA</title>
 </svelte:head>
 
-<Nav id="main-nav" class="fixed top-0 left-0 w-full py-sm lg:py-base px-base lg:px-lg" />
+<Nav id="main-nav" class="fixed top-0 left-0 w-full py-sm px-md lg:px-lg" />
 
 <main>
 	{#if isBackground}
@@ -95,10 +95,10 @@
 	display: flex;
 	flex-direction: row;
 	height: 100svh;
-	padding-left: 260px;
+	padding-left: 271px;
 	
 	@media (min-width: 1024px) {
-		padding-left: 500px;
+		padding-left: 517px;
 	}
 }
 
@@ -124,6 +124,6 @@
 }
 
 :global(#main-nav nav) {
-	padding: var(--spacing-xs);
+	padding: var(--spacing-sm);
 }
 </style>
