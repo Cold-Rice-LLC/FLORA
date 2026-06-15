@@ -1,4 +1,4 @@
-import { client } from '$lib/sanity/client.js';
+import { client, ogImage } from '$lib/sanity/client.js';
 
 export async function loadNews({ params }) {
 	const { slug } = params;
@@ -29,5 +29,13 @@ export async function loadNews({ params }) {
 		{ slug }
 	);
 
-	return { news };
+	const firstImage = news?.modules?.find((m) => m._type === 'imageModule')?.image;
+
+	const meta = {
+		title: news ? ['FLORA', news.title].filter(Boolean).join(' ') : 'FLORA',
+		description: news?.subtitle,
+		image: ogImage(firstImage)
+	};
+
+	return { news, meta };
 }

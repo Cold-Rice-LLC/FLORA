@@ -13,6 +13,9 @@
 
 	let isBackground = $derived($page.url.pathname !== '/');
 
+	// Page meta — routes return a `meta` object via their load fn; fall back to defaults.
+	let meta = $derived($page.data.meta ?? { title: 'FLORA' });
+
 	// Global Escape — closes the topmost visible layer
 	function onKeyDown(e) {
 		if (e.key !== 'Escape') return;
@@ -53,7 +56,20 @@
 <svelte:window onkeydown={onKeyDown} />
 
 <svelte:head>
-	<title>FLORA</title>
+	<title>{meta.title}</title>
+	<meta property="og:title" content={meta.title} />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content={$page.url.href} />
+	<meta name="twitter:card" content={meta.image ? 'summary_large_image' : 'summary'} />
+	{#if meta.description}
+		<meta name="description" content={meta.description} />
+		<meta property="og:description" content={meta.description} />
+		<meta name="twitter:description" content={meta.description} />
+	{/if}
+	{#if meta.image}
+		<meta property="og:image" content={meta.image} />
+		<meta name="twitter:image" content={meta.image} />
+	{/if}
 </svelte:head>
 
 <Nav id="main-nav" class="fixed top-0 left-0 w-full py-sm px-md lg:px-lg" />

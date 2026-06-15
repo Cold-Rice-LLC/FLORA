@@ -28,5 +28,5 @@ export const load = async () => {
 		`)
 	]);
 
-	return { stages, projects };
+	return { stages, projects, meta: { title: 'FLORA Índice / Index' } };
 };

@@ -16,5 +16,5 @@ export const load = async () => {
 		client.fetch(`*[_type == "informationPage"][0] { infoTextEs, infoTextEn }`)
 	]);
 
-	return { news, informationPage };
+	return { news, informationPage, meta: { title: 'FLORA Información / Information' } };
 };

@@ -17,3 +17,9 @@ export const urlFor = (source) => {
 export const getImageHeight = (width, aspectRatio) => {
 	return width / aspectRatio;
 };
+
+// Build a social-share (Open Graph) image URL at the standard 1200x630 size.
+export const ogImage = (source) => {
+	if (!source?.asset) return undefined;
+	return urlFor(source).width(1200).height(630).fit('crop').auto('format').url();
+};

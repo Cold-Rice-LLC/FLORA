@@ -1,4 +1,4 @@
-import { client } from '$lib/sanity/client.js';
+import { client, ogImage } from '$lib/sanity/client.js';
 
 export async function loadProject({ params }) {
 	const { slug } = params;
@@ -11,6 +11,8 @@ export async function loadProject({ params }) {
 			projectNumber,
 			date,
 			introduction,
+			previewText,
+			featuredImage { asset-> },
 			phases[] {
 				_key,
 				category-> { _id, order, titleEs, titleEn },
@@ -28,5 +30,15 @@ export async function loadProject({ params }) {
 		{ slug }
 	);
 
-	return { project };
+	const title = project
+		? ['FLORA', project.projectNumber, project.title].filter(Boolean).join(' ')
+		: 'FLORA';
+
+	const meta = {
+		title,
+		description: project?.previewText,
+		image: ogImage(project?.featuredImage)
+	};
+
+	return { project, meta };
 }
