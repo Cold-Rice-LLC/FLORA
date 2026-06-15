@@ -71,8 +71,7 @@
 }
 
 :root {
-	--underline-thickness: .05em;
-	--underline-thickness-alt: .09em;
+	--underline-thickness: 1px;
 	--underline-offset: .03em;
 }
 

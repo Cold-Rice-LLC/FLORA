@@ -8,16 +8,16 @@
 </script>
 
 <a href="/index/{project.slug.current}{params}" class="project-grid-item">
-	<div class="label w-full text-xs-minus lg:text-xs font-secondary grid grid-cols-4 lg:grid-cols-8 gap-sm">
-		<div class="col-span-1">
+	<div class="label w-full text-xs-minus lg:text-xs font-secondary grid grid-cols-8 lg:grid-cols-8 gap-xs lg:gap-sm">
+		<div class="col-span-2 lg:col-span-1">
 			{#if project.projectNumber}<span>{project.projectNumber}</span>{/if}
 		</div>
 
-		<div class="col-span-3 lg:col-span-5">
+		<div class="col-span-4 lg:col-span-5">
 			{#if project.title}<span>{project.title}</span>{/if}
 		</div>
 
-		<div class="col-span-2 hidden lg:block">
+		<div class="col-span-2 text-right lg:text-left">
 			{#if year}<span>{year}</span>{/if}
 		</div>
 	</div>

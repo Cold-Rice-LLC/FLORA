@@ -14,7 +14,7 @@
 </script>
 
 <section id="index-detail-panel">
-	<div class="detail-header flex justify-between items-start font-secondary text-xs-minus lg:text-xs">
+	<div class="detail-header flex justify-between items-start font-secondary text-xs-minus lg:text-xs gap-base lg:gap-[3.2vw]">
 		<div class="flex gap-base lg:gap-[16vw]">
 			<div class="flex gap-sm lg:gap-[3.2vw]">
 				{#if data?.project?.projectNumber}<span>{data.project.projectNumber}</span>{/if}
@@ -24,7 +24,7 @@
 			{#if year}<span>{year}</span>{/if}
 		</div>
 
-		<a href={closeHref}>Cerrar / Close</a>
+		<a href={closeHref} class="flex-none">Cerrar / Close</a>
 	</div>
 
 	{@render children?.()}

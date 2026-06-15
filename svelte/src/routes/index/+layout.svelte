@@ -153,7 +153,7 @@
 	.projects-filters {
 		a.active {
 			text-decoration: underline;
-			text-decoration-thickness: var(--underline-thickness-alt);
+			text-decoration-thickness: var(--underline-thickness);
 			text-underline-offset: var(--underline-offset);
 		}
 	}

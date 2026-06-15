@@ -163,7 +163,7 @@
 	display: flex;
 	flex-direction: row;
 	height: 100svh;
-	padding-left: 271px;
+	padding-left: 247px;
 	
 	@media (min-width: 1024px) {
 		padding-left: 517px;
