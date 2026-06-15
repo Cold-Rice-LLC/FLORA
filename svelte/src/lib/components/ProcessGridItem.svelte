@@ -74,6 +74,7 @@
 		top: 0;
 		left: 0;
 		z-index: 1;
+		transform: translateY(-0.1em);
 	}
 
 	.hover-content {

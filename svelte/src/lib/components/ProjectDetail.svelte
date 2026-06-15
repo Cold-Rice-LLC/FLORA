@@ -47,7 +47,7 @@
 	{/if}
 
 	{#each (data.project?.phases ?? []) as phase (phase._key)}
-		<section id="stage-{phase.category?.order}" class="space-y-lg lg:space-y-xl">
+		<section id="stage-{phase.category?.order}" class="space-y-base">
 			{#each (phase.modules ?? []) as module (module._key)}
 				{#if module._type === 'imageModule'}
 					{@const imageIndex = getImageModules(phase.modules).findIndex((m) => m._key === module._key) + 1}

@@ -13,11 +13,11 @@
 			<a href="/">FLORA<span class="hidden lg:inline">:</span></a>
 
 			<li class="mt-base lg:mt-0">
-				<a href="/index" class={indexActive ? 'active' : ''}>Índice / Index</a><span class="hidden lg:inline">,</span>
+				<a href={indexActive ? '/' : '/index'} class={indexActive ? 'active' : ''}>Índice / Index</a><span class="hidden lg:inline">,</span>
 			</li>
 
 			<li>
-				<a href="/information" class={infoActive ? 'active' : ''}>Información / Information</a>
+				<a href={infoActive ? '/' : '/information'} class={infoActive ? 'active' : ''}>Información / Information</a>
 			</li>
 		</ul>
 	</nav>

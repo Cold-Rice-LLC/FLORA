@@ -136,7 +136,7 @@
 			{/if}
 		</div>
 
-		<div class="projects mt-base">
+		<div class="projects mt-lg">
 			{#if view === 'process'}
 				<ProcessGrid items={processItems} params={$page.url.search} />
 			{:else if view === 'projects'}

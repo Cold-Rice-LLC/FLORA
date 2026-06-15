@@ -42,6 +42,7 @@
 		top: 0px;
 		left: 0px;
 		z-index: 1;
+		transform: translateY(-0.1em);
 	}
 
 	.project-grid-item:hover .image-container {
