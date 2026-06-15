@@ -108,7 +108,7 @@
 	{/if}
 </svelte:head>
 
-<Nav id="main-nav" class="fixed top-0 left-0 w-full py-sm px-md lg:px-lg" />
+<Nav id="main-nav" class="fixed top-0 left-0 w-full py-sm px-base lg:px-lg" />
 
 <main>
 	{#if isBackground}

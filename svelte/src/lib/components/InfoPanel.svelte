@@ -26,7 +26,7 @@
 <style>
 	#index-info-panel {
 		position: fixed;
-		width: calc(100% - (var(--spacing-md) * 2));
+		width: calc(100% - (var(--spacing-base) * 2));
 		height: calc(100svh - (var(--spacing-sm) * 2));
 		top: 50%;
 		left: 50%;
@@ -34,6 +34,7 @@
 		background-color: var(--color-tan);
 		z-index: 100;
 		overflow-y: auto;
+		-webkit-overflow-scrolling: touch;
 		overscroll-behavior: none;
 		scrollbar-width: none;
 

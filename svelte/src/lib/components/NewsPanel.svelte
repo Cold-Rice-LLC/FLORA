@@ -44,6 +44,7 @@
 		overflow-y: auto;
 		overscroll-behavior: none;
 		scrollbar-width: none;
+		-webkit-overflow-scrolling: touch;
 
 		@media (min-width: 1024px) {
 			width: calc(100% - (var(--spacing-lg) * 8));

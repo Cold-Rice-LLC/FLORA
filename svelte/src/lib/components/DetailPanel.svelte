@@ -33,7 +33,7 @@
 <style>
 	#index-detail-panel {
 		position: fixed;
-		width: calc(100% - (var(--spacing-xl) * 2));
+		width: calc(100% - (var(--spacing-lg) * 2));
 		height: 100svh;
 		top: 50%;
 		left: 50%;
@@ -44,6 +44,7 @@
 		overflow-y: auto;
 		scrollbar-width: none;
 		padding: var(--spacing-base);
+		-webkit-overflow-scrolling: touch;
 
 		@media (min-width: 1024px) {
 			width: calc(100% - (var(--spacing-2xl) * 2));
