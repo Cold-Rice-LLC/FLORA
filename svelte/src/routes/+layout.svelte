@@ -13,6 +13,11 @@
 
 	let isBackground = $derived($page.url.pathname !== '/');
 
+	// Lock page scrolling while a panel is open so the home page can't scroll behind it.
+	$effect(() => {
+		document.body.style.overflowY = isBackground ? 'hidden' : 'initial';
+	});
+
 	// Page meta — routes return a `meta` object via their load fn; fall back to defaults.
 	let meta = $derived($page.data.meta ?? { title: 'FLORA' });
 
@@ -107,16 +112,16 @@
 
 <main>
 	{#if isBackground}
-		<a href="/" class="home-overlay">
+		<a href="/" class="home-overlay" data-sveltekit-noscroll>
 			<span class="sr-only">Go to home</span>
 		</a>
 	{/if}
 
 	<!-- Home page content — always rendered so it stays visible behind panels -->
-	<div class="featured-projects" use:wheelToHorizontal>
+	<div class="featured-projects pb-base lg:pb-0" use:wheelToHorizontal>
 		<div class="featured-projects-inner">
 			{#each data.featuredProjects as project (project._id)}
-				<a href="/projects/{project.slug.current}" class="featured-project">
+				<a href="/projects/{project.slug.current}" class="featured-project" data-sveltekit-noscroll>
 					{#if project.featuredImage?.asset}
 						{@const dims = project.featuredImage.asset.metadata?.dimensions}
 						<div
@@ -152,36 +157,55 @@
 }
 
 .featured-projects {
-	position: fixed;
-	inset: 0;
-	overflow-x: auto;
-	overflow-y: hidden;
 	scrollbar-width: none;
+	padding-top: 103px;
+
+	@media (min-width: 1024px) {
+		overflow-x: auto;
+		overflow-y: hidden;
+		position: fixed;
+		inset: 0;
+		padding-top: 0px;
+	}
 }
 
 .featured-projects-inner {
 	display: flex;
-	flex-direction: row;
-	height: 100svh;
-	padding-left: 247px;
+	flex-direction: column;
+	height: auto;
+	gap: var(--spacing-base);
+	/* padding-left: 247px; */
 	
 	@media (min-width: 1024px) {
 		padding-left: 517px;
+		flex-direction: row;
+		height: 100svh;
+		gap: 0px;
 	}
 }
 
 .featured-project {
 	display: flex;
 	flex-direction: column;
-	height: 100svh;
+	height: auto;
+	width: 100%;
 	flex-shrink: 0;
+
+	@media (min-width: 1024px) {
+		height: 100svh;
+	}
 }
 
 .featured-project-image {
-	flex: 1 1 0;
 	min-height: 0;
-	height: 100%;
-	width: auto;
+	height: auto;
+	width: 100%;
+
+	@media (min-width: 1024px) {
+		flex: 1 1 0;
+		height: 100%;
+		width: auto;
+	}
 
 	:global(img) {
 		display: block;

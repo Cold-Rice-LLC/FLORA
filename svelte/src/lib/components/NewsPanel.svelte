@@ -25,7 +25,7 @@
 			{#if data?.news?.subtitle}<p>{data.news.subtitle}</p>{/if}
 		</div>
 
-		<a href={closeHref}>Cerrar / Close</a>
+		<a href={closeHref} data-sveltekit-noscroll>Cerrar / Close</a>
 	</div>
 
 	{@render children?.()}

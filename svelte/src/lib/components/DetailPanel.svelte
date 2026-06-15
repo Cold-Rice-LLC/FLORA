@@ -24,7 +24,7 @@
 			{#if year}<span>{year}</span>{/if}
 		</div>
 
-		<a href={closeHref} class="flex-none">Cerrar / Close</a>
+		<a href={closeHref} class="flex-none" data-sveltekit-noscroll>Cerrar / Close</a>
 	</div>
 
 	{@render children?.()}
