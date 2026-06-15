@@ -2,7 +2,7 @@
 	import { format, parseISO } from 'date-fns';
 	import Image from '$lib/components/Image.svelte';
 
-	let { item, params = '' } = $props();
+	let { item, params = '', active = false, onActivate, onClear } = $props();
 
 	// console.log(item)
 
@@ -14,29 +14,50 @@
 		item.phase.modules?.find((m) => m._type === 'imageModule' && m.image?.asset) ?? null
 	);
 
-	// Double-tap on touch: first tap reveals hover state, second tap navigates
-	let touched = $state(false);
+	// Distinguish a tap from a scroll/drag gesture so scrolling doesn't reveal state.
+	const MOVE_THRESHOLD = 10;
+	let startX = 0;
+	let startY = 0;
+	let moved = false;
 
-	function onClick(e) {
-		if (!('ontouchstart' in window)) return; // desktop — let it through
-		if (!touched) {
-			e.preventDefault();
-			touched = true;
-		}
-		// second tap: touched is already true, allow default navigation
+	function onTouchStart(e) {
+		const t = e.touches[0];
+		startX = t.clientX;
+		startY = t.clientY;
+		moved = false;
 	}
 
-	function onBlur() {
-		touched = false;
+	function onTouchMove(e) {
+		const t = e.touches[0];
+		if (Math.abs(t.clientX - startX) > MOVE_THRESHOLD || Math.abs(t.clientY - startY) > MOVE_THRESHOLD) {
+			moved = true;
+		}
+	}
+
+	// Double-tap on touch: first tap reveals hover state, second tap navigates.
+	function onClick(e) {
+		if (!('ontouchstart' in window)) return; // desktop — let it through
+		if (moved) {
+			e.preventDefault(); // was a scroll, not a tap
+			return;
+		}
+		if (!active) {
+			e.preventDefault();
+			onActivate?.();
+		} else {
+			// Second tap navigates — clear so the state isn't active on return.
+			onClear?.();
+		}
 	}
 </script>
 
 <a
 	href="/index/{item.project.slug.current}{params}"
 	class="process-grid-item"
-	class:touched
+	class:touched={active}
+	ontouchstart={onTouchStart}
+	ontouchmove={onTouchMove}
 	onclick={onClick}
-	onblur={onBlur}
 >
 	<div class="label text-xs-minus lg:text-xs font-secondary">
 		<p>{item.project.projectNumber} [{item.phase.category?.order}]</p>
