@@ -51,6 +51,37 @@
 		clearTimeout(loadingTimeout);
 		NProgress.done();
 	});
+
+	// Redirect vertical wheel scrolling into horizontal scrolling on the home strip.
+	function wheelToHorizontal(node) {
+		// Desktop only — matches the `lg` (1024px) breakpoint. Re-evaluated on
+		// breakpoint change rather than on every wheel event.
+		const desktop = window.matchMedia('(min-width: 1024px)');
+		let isDesktop = desktop.matches;
+		const onBreakpoint = (e) => (isDesktop = e.matches);
+		desktop.addEventListener('change', onBreakpoint);
+
+		function onWheel(e) {
+			if (!isDesktop) return;
+			// Only the home view hijacks the wheel; panels scroll vertically as normal.
+			if ($page.url.pathname !== '/') return;
+			// Nothing to scroll horizontally — leave the event alone.
+			if (node.scrollWidth <= node.clientWidth) return;
+			// Firefox mouse wheels report deltas in lines (deltaMode 1), not pixels;
+			// scale those up so a notch moves a comparable distance across browsers.
+			const scale = e.deltaMode === 1 ? 16 : 1;
+			node.scrollLeft += (e.deltaY + e.deltaX) * scale;
+			e.preventDefault();
+		}
+		node.addEventListener('wheel', onWheel, { passive: false });
+
+		return {
+			destroy() {
+				node.removeEventListener('wheel', onWheel);
+				desktop.removeEventListener('change', onBreakpoint);
+			}
+		};
+	}
 </script>
 
 <svelte:window onkeydown={onKeyDown} />
@@ -82,7 +113,7 @@
 	{/if}
 
 	<!-- Home page content — always rendered so it stays visible behind panels -->
-	<div class="featured-projects">
+	<div class="featured-projects" use:wheelToHorizontal>
 		<div class="featured-projects-inner">
 			{#each data.featuredProjects as project (project._id)}
 				<a href="/projects/{project.slug.current}" class="featured-project">

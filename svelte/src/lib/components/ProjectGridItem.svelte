@@ -45,11 +45,11 @@
 		transform: translateY(-0.1em);
 	}
 
-	.project-grid-item:hover .image-container {
+	/* .project-grid-item:hover .image-container {
 		@media (min-width: 1024px) {
 			opacity: .5;
 		}
-	}
+	} */
 
 	:global(.project-grid-item .item-image) {
 		position: absolute;
