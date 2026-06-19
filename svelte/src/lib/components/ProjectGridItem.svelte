@@ -34,7 +34,6 @@
 		position: relative;
 		display: block;
 		aspect-ratio: 1;
-		overflow: hidden;
 	}
 
 	.label {
@@ -42,7 +41,7 @@
 		top: 0px;
 		left: 0px;
 		z-index: 1;
-		transform: translateY(-0.1em);
+		transform: translateY(-0.14em);
 	}
 
 	/* .project-grid-item:hover .image-container {

@@ -216,6 +216,6 @@
 }
 
 :global(#main-nav nav) {
-	padding: var(--spacing-sm);
+	padding: 0.65rem var(--spacing-sm);
 }
 </style>

@@ -87,7 +87,6 @@
 		position: relative;
 		display: block;
 		aspect-ratio: 1;
-		overflow: hidden;
 	}
 
 	.label {
@@ -95,7 +94,7 @@
 		top: 0;
 		left: 0;
 		z-index: 1;
-		transform: translateY(-0.1em);
+		transform: translateY(-0.14em);
 	}
 
 	.hover-content {
@@ -108,9 +107,28 @@
 		opacity: 1;
 	}
 
-	.process-grid-item:hover .image-container,
+	/* .process-grid-item:hover .image-container,
 	.process-grid-item.touched .image-container {
 		opacity: .5;
+	} */
+
+	.process-grid-item .image-container {
+		position: relative;
+		width: 100%;
+		height: 100%;
+	}
+
+	.process-grid-item .image-container:after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background-color: var(--color-grey-1);
+	}
+
+	:global(.process-grid-item:hover .image-container img) {
+		background-color: var(--color-grey-1);
+		mix-blend-mode: multiply;
+		filter: grayscale(100%) contrast(1000%) brightness(10);
 	}
 
 	:global(.process-grid-item .item-image) {

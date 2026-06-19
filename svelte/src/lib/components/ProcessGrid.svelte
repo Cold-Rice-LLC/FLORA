@@ -26,7 +26,7 @@
 	});
 </script>
 
-<div class="grid grid-cols-3 lg:grid-cols-8 gap-x-sm gap-y-base">
+<div class="grid grid-cols-3 lg:grid-cols-6 xl:grid-cols-8 gap-x-sm gap-y-base">
 	{#each items as item (item.phase._key)}
 		<ProcessGridItem
 			{item}

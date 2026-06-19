@@ -43,7 +43,7 @@
 		overscroll-behavior: none;
 		overflow-y: auto;
 		scrollbar-width: none;
-		padding: var(--spacing-base);
+		padding: 1.6rem var(--spacing-base);
 		-webkit-overflow-scrolling: touch;
 
 		@media (min-width: 1024px) {

@@ -10,7 +10,7 @@
 </script>
 
 <section id="index-info-panel" style={isBackground ? 'overflow-y: hidden' : ''}>
-	<Nav id="info-nav" class="p-sm" />
+	<Nav id="info-nav" />
 
 	{#if isBackground}
 		<a href={href} class="panel-overlay">
@@ -54,6 +54,7 @@
 	:global(#info-nav) {
 		position: sticky;
 		top: 0px;
+		padding: 0.65rem var(--spacing-sm);
 		/* background: rgb(253 245 231 / 95%); */
 
 		/* &::before {

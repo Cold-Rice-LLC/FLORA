@@ -66,7 +66,7 @@
 <InfoPanel href="/index">
 	<!-- Index list content goes here (loaded via +layout.js) -->
 	<div class="pt-[100px] lg:pt-[150px]">
-		<div class="filters grid grid-cols-6 lg:grid-cols-8 gap-sm">
+		<div class="filters grid grid-cols-6 xl:grid-cols-8 gap-sm">
 			<div class="col-span-2 text-xs-minus lg:text-xs font-secondary space-y-[1lh] lg:space-y-0">
 				<div class="flex flex-col lg:flex-row lg:gap-1">
 					<p>Vista:</p>

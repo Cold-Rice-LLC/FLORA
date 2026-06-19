@@ -11,7 +11,7 @@
 	let closeHref = $derived($page.url.pathname.startsWith('/information') ? '/information' : '/');
 </script>
 
-<section id="news-detail-panel" class="p-sm space-y-xl">
+<section id="news-detail-panel" class="space-y-xl">
 	<div class="news-detail-header flex justify-between items-start font-secondary text-xs-minus lg:text-xs">
 		<div>
 			{#if formattedDate || data?.news?.time}
@@ -45,6 +45,7 @@
 		overscroll-behavior: none;
 		scrollbar-width: none;
 		-webkit-overflow-scrolling: touch;
+		padding: 1.55rem var(--spacing-base);
 
 		@media (min-width: 1024px) {
 			width: calc(100% - (var(--spacing-lg) * 8));
