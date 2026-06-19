@@ -9,7 +9,8 @@ export const load = async () => {
 				slug,
 				projectNumber,
 				date,
-				featuredImage { asset-> }
+				featuredImage { asset-> },
+				featuredVideo { asset-> }
 			}
 		}
 	`);

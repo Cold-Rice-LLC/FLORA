@@ -1,11 +1,12 @@
 <script>
 	import { onMount } from 'svelte';
 	import Image from '$lib/components/Image.svelte';
+	import Video from '$lib/components/Video.svelte';
 	import Swiper from 'swiper';
 	import 'swiper/swiper-bundle.css';
 	import { portal } from '$lib/actions/portal.js';
 
-	let { images, activeIndex = $bindable(-1) } = $props();
+	let { media, activeIndex = $bindable(-1) } = $props();
 
 	let swiperEl = $state(null);
 	let swiperApi = $state(null);
@@ -17,6 +18,24 @@
 
 	let isActive = $derived(activeIndex >= 0);
 
+	// Restart the video on the active slide and stop every other one — keeps
+	// looped-clone and off-screen videos from playing in the background.
+	function syncVideos() {
+		if (!swiperApi?.slides) return;
+		swiperApi.slides.forEach((slide, i) => {
+			const v = slide.querySelector('video');
+			if (!v) return;
+			if (isActive && i === swiperApi.activeIndex) {
+				v.currentTime = 0;
+				const p = v.play();
+				if (p?.catch) p.catch(() => {});
+			} else {
+				v.pause();
+				v.currentTime = 0;
+			}
+		});
+	}
+
 	onMount(() => {
 		isTouchDevice = 'ontouchstart' in window;
 
@@ -26,14 +45,20 @@
 			slidesPerView: 1,
 			speed: isTouchDevice ? 300 : 0,
 			allowTouchMove: isTouchDevice,
+			on: {
+				slideChange: syncVideos,
+			},
 		});
 	});
 
-	// When activeIndex changes from outside, jump to that slide
+	// When activeIndex changes from outside, jump to that slide; (re)start or stop
+	// videos whenever the carousel opens, closes, or switches slides.
 	$effect(() => {
-		if (swiperApi && activeIndex >= 0) {
+		if (!swiperApi) return;
+		if (activeIndex >= 0) {
 			swiperApi.slideToLoop(activeIndex, 0);
 		}
+		syncVideos();
 	});
 
 	$effect(() => {
@@ -95,9 +120,13 @@
 >
 	<div class="swiper" bind:this={swiperEl}>
 		<div class="swiper-wrapper">
-			{#each images as image}
+			{#each media as item}
 				<div class="swiper-slide">
-					<Image item={image} fetchWidth={2400} loading="eager" />
+					{#if item.type === 'video'}
+						<Video item={item.video} poster={item.poster} autoplay={false} />
+					{:else}
+						<Image item={item.image} fetchWidth={2400} loading="eager" />
+					{/if}
 				</div>
 			{/each}
 		</div>
@@ -135,7 +164,14 @@
 		cursor: pointer;
 	}
 
-	:global(.carousel .swiper-slide img) {
+	/* Video.svelte wraps the video in a 16/9 <figure>; unwrap it here so the
+	   video stays the direct flex child and can fill the viewport like images. */
+	:global(.carousel .swiper-slide figure) {
+		display: contents;
+	}
+
+	:global(.carousel .swiper-slide img),
+	:global(.carousel .swiper-slide video) {
 		max-width: 100%;
 		max-height: 100%;
 		width: auto;

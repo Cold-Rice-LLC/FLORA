@@ -14,6 +14,7 @@ export const load = async () => {
 				date,
 				previewText,
 				featuredImage { asset-> },
+				featuredVideo { asset-> },
 				phases[] {
 					_key,
 					lastUpdated,
@@ -21,7 +22,9 @@ export const load = async () => {
 					modules[] {
 						_type,
 						_key,
-						image { asset-> }
+						image { asset-> },
+						video { asset-> },
+						poster { asset-> }
 					}
 				}
 			}

@@ -1,6 +1,7 @@
 <script>
 	import { format, parseISO } from 'date-fns';
 	import Image from '$lib/components/Image.svelte';
+	import Video from '$lib/components/Video.svelte';
 
 	let { item, params = '', active = false, onActivate, onClear } = $props();
 
@@ -9,9 +10,13 @@
 	// Project year
 	let year = $derived(item.project.date ? format(parseISO(item.project.date), 'yyyy') : null);
 
-	// First image module across all modules in this phase
-	let firstImage = $derived(
-		item.phase.modules?.find((m) => m._type === 'imageModule' && m.image?.asset) ?? null
+	// First media module (image or video) across all modules in this phase
+	let firstMedia = $derived(
+		item.phase.modules?.find(
+			(m) =>
+				(m._type === 'imageModule' && m.image?.asset) ||
+				(m._type === 'videoModule' && m.video?.asset)
+		) ?? null
 	);
 
 	// Distinguish a tap from a scroll/drag gesture so scrolling doesn't reveal state.
@@ -75,9 +80,13 @@
 		</div>
 	</div>
 
-	{#if firstImage}
+	{#if firstMedia?._type === 'videoModule'}
 		<div class="image-container inset-0">
-			<Image item={firstImage.image} classes="item-image" />
+			<Video item={firstMedia.video} poster={firstMedia.poster} classes="item-image" />
+		</div>
+	{:else if firstMedia?._type === 'imageModule'}
+		<div class="image-container inset-0">
+			<Image item={firstMedia.image} classes="item-image" />
 		</div>
 	{/if}
 </a>
@@ -93,8 +102,8 @@
 		position: absolute;
 		top: 0;
 		left: 0;
-		z-index: 1;
 		transform: translateY(-0.14em);
+		z-index: 10;
 	}
 
 	.hover-content {
@@ -123,12 +132,21 @@
 		position: absolute;
 		inset: 0;
 		background-color: var(--color-grey-1);
+		mix-blend-mode: lighten;
+		opacity: 0;
 	}
 
-	:global(.process-grid-item:hover .image-container img) {
-		background-color: var(--color-grey-1);
+	.process-grid-item:hover .image-container:after,
+	.process-grid-item.touched .image-container:after {
+		opacity: 1;
+	}
+
+	:global(.process-grid-item:hover .image-container img),
+	:global(.process-grid-item:hover .image-container video),
+	:global(.process-grid-item.touched .image-container img),
+	:global(.process-grid-item.touched .image-container video) {
+		filter: grayscale(100%) contrast(1000%) brightness(50);
 		mix-blend-mode: multiply;
-		filter: grayscale(100%) contrast(1000%) brightness(10);
 	}
 
 	:global(.process-grid-item .item-image) {

@@ -20,6 +20,12 @@ export async function loadNews({ params }) {
 					captionEs,
 					captionEn
 				},
+				_type == 'videoModule' => {
+					video { asset-> },
+					poster { asset-> },
+					captionEs,
+					captionEn
+				},
 				_type == 'textModule' => {
 					textEs,
 					textEn

@@ -88,22 +88,18 @@
 			</div>
 
 			{#if view === 'process'}
-				<div class="project-stages col-span-4 lg:col-span-6 text-xs-minus lg:text-xs font-secondary space-y-[1lh] lg:space-y-0">
-					<div class="flex flex-col lg:flex-row lg:gap-1">
-						<p>Filtrar:</p>
-						<div class="flex flex-col lg:block">
-							{#each data.stages as stage, i (stage._id)}
-								<a href={stageHref(stage)} class:active={activeStage === String(stage.order)} class="inline-flex gap-2 lg:gap-1"><span class="flex-none">[{stage.order}]</span><span class="flex-1 lg:flex-none">{stage.titleEs}</span></a>{#if i < data.stages.length - 1}<span class="hidden lg:inline">,&nbsp;</span> {/if}
-							{/each}
-						</div>
+				<div class="project-stages col-span-4 xl:col-span-6 text-xs-minus lg:text-xs font-secondary space-y-[1lh] lg:space-y-0">
+					<div class="flex md:block flex-col items-start">
+						<span>Filtrar:</span>
+						{#each data.stages as stage, i (stage._id)}
+							<a href={stageHref(stage)} class:active={activeStage === String(stage.order)} class="inline-flex gap-2 lg:gap-1"><span class="flex-none">[{stage.order}]</span><span class="flex-1 lg:flex-none">{stage.titleEs}</span></a>{#if i < data.stages.length - 1}<span class="hidden lg:inline">,&nbsp;</span> {/if}
+						{/each}
 					</div>
-					<div class="flex flex-col lg:flex-row lg:gap-1">
-						<p>Filter:</p>
-						<div class="flex flex-col lg:block">
-							{#each data.stages as stage, i (stage._id)}
-								<a href={stageHref(stage)} class:active={activeStage === String(stage.order)} class="inline-flex gap-2 lg:gap-1"><span class="flex-none">[{stage.order}]</span><span class="flex-1 lg:flex-none">{stage.titleEn}</span></a>{#if i < data.stages.length - 1}<span class="hidden lg:inline">,&nbsp;</span> {/if}
-							{/each}
-						</div>
+					<div class="flex md:block flex-col items-start">
+						<span>Filter:</span>
+						{#each data.stages as stage, i (stage._id)}
+							<a href={stageHref(stage)} class:active={activeStage === String(stage.order)} class="inline-flex gap-2 lg:gap-1"><span class="flex-none">[{stage.order}]</span><span class="flex-1 lg:flex-none">{stage.titleEn}</span></a>{#if i < data.stages.length - 1}<span class="hidden lg:inline">,&nbsp;</span> {/if}
+						{/each}
 					</div>
 				</div>
 			{:else if view === 'projects'}

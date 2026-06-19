@@ -49,6 +49,11 @@
 
 		@media (min-width: 1024px) {
 			width: calc(100% - (var(--spacing-lg) * 8));
+			height: calc(100svh - (var(--spacing-lg) * 3));
+		}
+
+		@media (min-width: 1024px) and (min-height: 950px) {
+			width: calc(100% - (var(--spacing-lg) * 8));
 			height: calc(100svh - (var(--spacing-lg) * 6));
 		}
 	}

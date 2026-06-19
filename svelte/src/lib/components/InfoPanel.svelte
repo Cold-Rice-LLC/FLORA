@@ -54,37 +54,10 @@
 	:global(#info-nav) {
 		position: sticky;
 		top: 0px;
-		padding: 0.65rem var(--spacing-sm);
-		/* background: rgb(253 245 231 / 95%); */
+		padding: 0.55rem var(--spacing-sm);
 
-		/* &::before {
-			content: '';
-			position: absolute;
-			height: 100px;
-			width: 100%;
-			bottom: 0px;
-			left: 0px;
-			transform: translateY(100%);
-			background: linear-gradient(
-				to bottom,
-				rgba(253, 245, 231, 0.95)  0%,
-				rgba(253, 245, 231, 0.987) 8.1%,
-				rgba(253, 245, 231, 0.951) 15.5%,
-				rgba(253, 245, 231, 0.896) 22.5%,
-				rgba(253, 245, 231, 0.825) 29%,
-				rgba(253, 245, 231, 0.741) 35.3%,
-				rgba(253, 245, 231, 0.648) 41.2%,
-				rgba(253, 245, 231, 0.55)  47.1%,
-				rgba(253, 245, 231, 0.45)  52.9%,
-				rgba(253, 245, 231, 0.352) 58.8%,
-				rgba(253, 245, 231, 0.259) 64.7%,
-				rgba(253, 245, 231, 0.175) 71%,
-				rgba(253, 245, 231, 0.104) 77.5%,
-				rgba(253, 245, 231, 0.049) 84.5%,
-				rgba(253, 245, 231, 0.013) 91.9%,
-				rgba(253, 245, 231, 0)     100%
-			);
-			z-index: -1;
-		} */
+		@media (min-width: 1024px) {
+			padding: 0.65rem var(--spacing-lg);
+		}
 	}
 </style>

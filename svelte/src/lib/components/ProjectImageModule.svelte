@@ -27,7 +27,7 @@
 	</div>
 	{#if module.captionEs || module.captionEn}
 		<div class="grid grid-cols-8 gap-sm">
-			<div class="{captionColsClass} text-xs-minus lg:text-xs font-secondary">
+			<div class="{captionColsClass} text-xs-minus lg:text-xs font-secondary space-y-sm">
 				{#if module.captionEs}
 					<div class="rich-text"><Portable value={module.captionEs} /></div>
 				{/if}

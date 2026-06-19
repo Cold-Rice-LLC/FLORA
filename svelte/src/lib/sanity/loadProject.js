@@ -20,6 +20,8 @@ export async function loadProject({ params }) {
 					_type,
 					_key,
 					image { asset-> },
+					video { asset-> },
+					poster { asset-> },
 					captionEs,
 					captionEn,
 					textEs,

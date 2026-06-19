@@ -7,6 +7,7 @@
 	import { page } from '$app/stores';
 	import Nav from '$lib/components/Nav.svelte';
 	import Image from '$lib/components/Image.svelte';
+	import Video from '$lib/components/Video.svelte';
 
 	// props
 	let { children, data } = $props();
@@ -121,8 +122,12 @@
 	<div class="featured-projects pb-base lg:pb-0" use:wheelToHorizontal>
 		<div class="featured-projects-inner">
 			{#each data.featuredProjects as project (project._id)}
-				<a href="/projects/{project.slug.current}" class="featured-project" data-sveltekit-noscroll>
-					{#if project.featuredImage?.asset}
+				<div class="featured-project">
+					{#if project.featuredVideo?.asset}
+						<div class="featured-project-image aspect-video relative">
+							<Video item={project.featuredVideo} poster={project.featuredImage} />
+						</div>
+					{:else if project.featuredImage?.asset}
 						{@const dims = project.featuredImage.asset.metadata?.dimensions}
 						<div
 							class="featured-project-image"
@@ -132,15 +137,15 @@
 						</div>
 					{/if}
 					
-					<div class="featured-project-meta flex-none text-xs-minus lg:text-xs font-secondary flex gap-base lg:gap-[16vw] p-sm">
+					<a href="/projects/{project.slug.current}" class="featured-project-meta flex-none text-xs-minus lg:text-xs font-secondary flex gap-base lg:gap-[16vw] p-sm" data-sveltekit-noscroll>
 						<div class="flex gap-sm lg:gap-[3.2vw]">
 							{#if project.projectNumber}<span>{project.projectNumber}</span>{/if}
 							{#if project.title}<span>{project.title}</span>{/if}
 						</div>
 
 						{#if project.date}<span>{format(parseISO(project.date), 'yyyy')}</span>{/if}
-					</div>
-				</a>
+					</a>
+				</div>
 			{/each}
 		</div>
 	</div>
@@ -173,14 +178,11 @@
 	display: flex;
 	flex-direction: column;
 	height: auto;
-	gap: var(--spacing-base);
-	/* padding-left: 247px; */
 	
 	@media (min-width: 1024px) {
 		padding-left: 517px;
 		flex-direction: row;
 		height: 100svh;
-		gap: 0px;
 	}
 }
 
@@ -193,6 +195,7 @@
 
 	@media (min-width: 1024px) {
 		height: 100svh;
+		width: auto;
 	}
 }
 
@@ -207,7 +210,16 @@
 		width: auto;
 	}
 
-	:global(img) {
+	:global(figure) {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		aspect-ratio: auto;
+	}
+
+	:global(img),
+	:global(video) {
 		display: block;
 		width: 100%;
 		height: 100%;
@@ -216,6 +228,10 @@
 }
 
 :global(#main-nav nav) {
-	padding: 0.65rem var(--spacing-sm);
+	padding: 0.55rem var(--spacing-sm);
+
+	@media (min-width: 1024px) {
+		padding: 0.65rem var(--spacing-lg);
+	}
 }
 </style>

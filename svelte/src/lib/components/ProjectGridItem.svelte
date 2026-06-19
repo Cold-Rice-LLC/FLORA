@@ -1,6 +1,7 @@
 <script>
 	import { format, parseISO } from 'date-fns';
 	import Image from '$lib/components/Image.svelte';
+	import Video from '$lib/components/Video.svelte';
 
 	let { project, params = '' } = $props();
 
@@ -22,7 +23,11 @@
 		</div>
 	</div>
 
-	{#if project.featuredImage?.asset}
+	{#if project.featuredVideo?.asset}
+		<div class="image-container inset-0">
+			<Video item={project.featuredVideo} poster={project.featuredImage} classes="item-image" />
+		</div>
+	{:else if project.featuredImage?.asset}
 		<div class="image-container inset-0">
 			<Image item={project.featuredImage} classes="item-image" />
 		</div>

@@ -1,5 +1,6 @@
 <script>
 	import ImageModule from '$lib/components/ImageModule.svelte';
+	import VideoModule from '$lib/components/VideoModule.svelte';
 	import TextModule from '$lib/components/TextModule.svelte';
 
 	let { data } = $props();
@@ -9,6 +10,8 @@
 	{#each data.news.modules as module (module._key)}
 		{#if module._type === 'imageModule'}
 			<ImageModule {module} />
+		{:else if module._type === 'videoModule'}
+			<VideoModule {module} />
 		{:else if module._type === 'textModule'}
 			<TextModule {module} />
 		{/if}

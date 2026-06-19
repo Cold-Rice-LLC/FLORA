@@ -1,5 +1,19 @@
 import {ReferenceRadio} from '../components/ReferenceRadio.jsx'
 
+const MAX_VIDEO_MB = 10
+
+// Warns (non-blocking) when an uploaded video exceeds the size budget. Runs after
+// upload — Sanity has no pre-upload size cap — so it nudges rather than prevents.
+const videoSizeWarning = (Rule) =>
+  Rule.custom(async (video, context) => {
+    if (!video?.asset?._ref) return true
+    const client = context.getClient({apiVersion: '2024-01-01'})
+    const size = await client.fetch(`*[_id == $id][0].size`, {id: video.asset._ref})
+    return size && size > MAX_VIDEO_MB * 1024 * 1024
+      ? `This video is ${(size / 1024 / 1024).toFixed(1)}MB. Keep it under ${MAX_VIDEO_MB}MB so it autoplays smoothly.`
+      : true
+  }).warning()
+
 export default {
   name: 'project',
   type: 'document',
@@ -27,6 +41,22 @@ export default {
       options: {
         hotspot: true,
       },
+    },
+    {
+      name: 'featuredVideo',
+      type: 'file',
+      title: 'Featured Video',
+      description:
+        'Optional MP4. When set, this autoplaying muted video overrides the featured image on the home page and projects grid. A featured image is still required — it is used as the video’s poster and fallback.',
+      options: {accept: 'video/mp4'},
+      validation: (Rule) => [
+        Rule.custom((video, context) =>
+          video?.asset && !context.document?.featuredImage?.asset
+            ? 'Add a Featured Image too — it is used as the video’s poster and fallback.'
+            : true,
+        ),
+        videoSizeWarning(Rule),
+      ],
     },
     {
       name: 'projectNumber',
@@ -124,6 +154,47 @@ export default {
                     select: {media: 'image'},
                     prepare({media}) {
                       return {title: 'Image', media}
+                    },
+                  },
+                },
+                {
+                  type: 'object',
+                  name: 'videoModule',
+                  title: 'Video',
+                  fields: [
+                    {
+                      name: 'video',
+                      type: 'file',
+                      title: 'Video',
+                      description: 'MP4 file. Plays muted and loops automatically.',
+                      options: {accept: 'video/mp4'},
+                      validation: (Rule) => videoSizeWarning(Rule),
+                    },
+                    {
+                      name: 'poster',
+                      type: 'image',
+                      title: 'Poster Image',
+                      description: 'Shown before the video loads. Videos display in a 16:9 frame.',
+                      options: {hotspot: true},
+                      validation: (Rule) => Rule.required(),
+                    },
+                    {
+                      name: 'captionEs',
+                      type: 'array',
+                      title: 'Caption (Spanish)',
+                      of: [{type: 'block'}],
+                    },
+                    {
+                      name: 'captionEn',
+                      type: 'array',
+                      title: 'Caption (English)',
+                      of: [{type: 'block'}],
+                    },
+                  ],
+                  preview: {
+                    select: {media: 'poster'},
+                    prepare({media}) {
+                      return {title: 'Video', media}
                     },
                   },
                 },
