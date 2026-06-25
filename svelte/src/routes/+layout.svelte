@@ -120,7 +120,7 @@
 
 	<!-- Home page content — always rendered so it stays visible behind panels -->
 	<div class="featured-projects pb-base lg:pb-0" use:wheelToHorizontal>
-		<div class="featured-projects-inner">
+		<div class="featured-projects-inner hidden lg:flex">
 			{#each data.featuredProjects as project (project._id)}
 				<div class="featured-project">
 					{#if project.featuredVideo?.asset}
@@ -146,6 +146,35 @@
 						{#if project.date}<span>{format(parseISO(project.date), 'yyyy')}</span>{/if}
 					</a>
 				</div>
+			{/each}
+		</div>
+
+		<div class="featured-projects-inner flex lg:hidden">
+			{#each data.featuredProjects as project (project._id)}
+				<a href="/projects/{project.slug.current}" class="featured-project">
+					{#if project.featuredVideo?.asset}
+						<div class="featured-project-image aspect-video relative">
+							<Video item={project.featuredVideo} poster={project.featuredImage} />
+						</div>
+					{:else if project.featuredImage?.asset}
+						{@const dims = project.featuredImage.asset.metadata?.dimensions}
+						<div
+							class="featured-project-image"
+							style={dims ? `aspect-ratio: ${dims.width} / ${dims.height}` : ''}
+						>
+							<Image item={project.featuredImage} />
+						</div>
+					{/if}
+					
+					<div class="featured-project-meta flex-none text-xs-minus lg:text-xs font-secondary flex gap-base lg:gap-[16vw] p-sm" data-sveltekit-noscroll>
+						<div class="flex gap-sm lg:gap-[3.2vw]">
+							{#if project.projectNumber}<span>{project.projectNumber}</span>{/if}
+							{#if project.title}<span>{project.title}</span>{/if}
+						</div>
+
+						{#if project.date}<span>{format(parseISO(project.date), 'yyyy')}</span>{/if}
+					</div>
+				</a>
 			{/each}
 		</div>
 	</div>
@@ -175,7 +204,6 @@
 }
 
 .featured-projects-inner {
-	display: flex;
 	flex-direction: column;
 	height: auto;
 	
@@ -231,7 +259,7 @@
 	padding: 0.55rem var(--spacing-sm);
 
 	@media (min-width: 1024px) {
-		padding: 0.65rem var(--spacing-lg);
+		padding: 0.65rem var(--spacing-sm);
 	}
 }
 </style>

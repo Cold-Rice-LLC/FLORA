@@ -27,12 +27,13 @@
 </script>
 
 <div class="grid grid-cols-3 lg:grid-cols-6 xl:grid-cols-8 gap-x-sm gap-y-base">
-	{#each items as item (item.phase._key)}
+	{#each items as item (`${item.project._id}:${item.phase._key}`)}
+		{@const key = `${item.project._id}:${item.phase._key}`}
 		<ProcessGridItem
 			{item}
 			{params}
-			active={activeKey === item.phase._key}
-			onActivate={() => (activeKey = item.phase._key)}
+			active={activeKey === key}
+			onActivate={() => (activeKey = key)}
 			onClear={() => (activeKey = null)}
 		/>
 	{/each}

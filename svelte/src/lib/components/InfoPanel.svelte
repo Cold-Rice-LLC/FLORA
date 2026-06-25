@@ -57,7 +57,7 @@
 		padding: 0.55rem var(--spacing-sm);
 
 		@media (min-width: 1024px) {
-			padding: 0.65rem var(--spacing-lg);
+			padding: 0.65rem var(--spacing-sm);
 		}
 	}
 </style>
