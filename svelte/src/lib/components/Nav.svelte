@@ -13,11 +13,11 @@
 			<a href="/" data-sveltekit-noscroll>FLORA<span class="hidden lg:inline">:</span></a>
 
 			<li class="mt-base lg:mt-0">
-				<a href={indexActive ? '/' : '/index'} class={indexActive ? 'active' : ''}>Índice / Index</a><span class="hidden lg:inline">,</span>
+				<a href={indexActive ? '/' : '/index'} class={indexActive ? 'active' : ''} data-sveltekit-noscroll>Índice / Index</a><span class="hidden lg:inline">,</span>
 			</li>
 
 			<li>
-				<a href={infoActive ? '/' : '/information'} class={infoActive ? 'active' : ''}>Información / Information</a>
+				<a href={infoActive ? '/' : '/information'} class={infoActive ? 'active' : ''} data-sveltekit-noscroll>Información / Information</a>
 			</li>
 		</ul>
 	</nav>

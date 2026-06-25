@@ -151,7 +151,7 @@
 
 		<div class="featured-projects-inner flex lg:hidden">
 			{#each data.featuredProjects as project (project._id)}
-				<a href="/projects/{project.slug.current}" class="featured-project">
+				<a href="/projects/{project.slug.current}" class="featured-project" data-sveltekit-noscroll>
 					{#if project.featuredVideo?.asset}
 						<div class="featured-project-image aspect-video relative">
 							<Video item={project.featuredVideo} poster={project.featuredImage} />
