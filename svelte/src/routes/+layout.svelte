@@ -15,8 +15,11 @@
 	let isBackground = $derived($page.url.pathname !== '/');
 
 	// Lock page scrolling while a panel is open so the home page can't scroll behind it.
+	// Target the root scroll container (<html>) rather than <body>: it freezes the page in
+	// place without losing the scroll offset, and combined with the panels' own
+	// `overscroll-behavior: none` it stops touch-scroll from chaining through to the home layer.
 	$effect(() => {
-		document.body.style.overflowY = isBackground ? 'hidden' : 'initial';
+		document.documentElement.style.overflow = isBackground ? 'hidden' : '';
 	});
 
 	// Page meta — routes return a `meta` object via their load fn; fall back to defaults.
