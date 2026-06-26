@@ -151,6 +151,10 @@
 			text-decoration: underline;
 			text-decoration-thickness: var(--underline-thickness);
 			text-underline-offset: var(--underline-offset);
+			/* Don't break the underline under descenders (y, j, g) — at the smaller
+			   mobile font size the line sits close enough to trigger skip-ink, which
+			   reads as a dashed underline. */
+			text-decoration-skip-ink: none;
 		}
 	}
 

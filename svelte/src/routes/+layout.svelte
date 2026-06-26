@@ -169,7 +169,7 @@
 						</div>
 					{/if}
 					
-					<div class="featured-project-meta flex-none text-xs-minus lg:text-xs font-secondary flex gap-base lg:gap-[16vw] p-sm" data-sveltekit-noscroll>
+					<div class="featured-project-meta flex-none text-xs-minus lg:text-xs font-secondary flex gap-base lg:gap-[16vw] py-sm px-xs" data-sveltekit-noscroll>
 						<div class="flex gap-sm lg:gap-[3.2vw]">
 							{#if project.projectNumber}<span>{project.projectNumber}</span>{/if}
 							{#if project.title}<span>{project.title}</span>{/if}
