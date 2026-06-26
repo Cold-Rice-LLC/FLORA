@@ -14,7 +14,7 @@
 </script>
 
 <article class="news-item text-xs-minus lg:text-xs font-secondary" class:opacity-30={isActive}>
-  <a href="/information/{news.slug.current}">
+  <a href="/information/{news.slug.current}" data-sveltekit-noscroll>
     {#if formattedDate || news.time}
       <p class="date">
         {#if formattedDate}<span>{formattedDate}</span>{/if}

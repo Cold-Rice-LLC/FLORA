@@ -12,7 +12,7 @@
 </script>
 
 <section id="news-detail-panel" class="space-y-xl">
-	<div class="news-detail-header flex justify-between items-start font-secondary text-xs-minus lg:text-xs">
+	<div class="news-detail-header flex justify-between items-start font-secondary text-xs-minus lg:text-xs gap-base lg:gap-[3.2vw]">
 		<div>
 			{#if formattedDate || data?.news?.time}
 				<p>
@@ -25,7 +25,7 @@
 			{#if data?.news?.subtitle}<p>{data.news.subtitle}</p>{/if}
 		</div>
 
-		<a href={closeHref} data-sveltekit-noscroll>Cerrar / Close</a>
+		<a href={closeHref} data-sveltekit-noscroll class="flex-none">Cerrar / Close</a>
 	</div>
 
 	{@render children?.()}
@@ -45,7 +45,7 @@
 		overscroll-behavior: none;
 		scrollbar-width: none;
 		-webkit-overflow-scrolling: touch;
-		padding: 1.55rem var(--spacing-base);
+		padding: .75rem var(--spacing-sm);
 
 		@media (min-width: 1024px) {
 			width: calc(100% - (var(--spacing-lg) * 8));

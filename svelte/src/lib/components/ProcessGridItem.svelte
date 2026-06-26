@@ -60,6 +60,7 @@
 	href="/index/{item.project.slug.current}{params}"
 	class="process-grid-item"
 	class:touched={active}
+	data-sveltekit-noscroll
 	ontouchstart={onTouchStart}
 	ontouchmove={onTouchMove}
 	onclick={onClick}
@@ -116,37 +117,15 @@
 		opacity: 1;
 	}
 
-	/* .process-grid-item:hover .image-container,
+	.process-grid-item:hover .image-container,
 	.process-grid-item.touched .image-container {
 		opacity: .5;
-	} */
+	}
 
 	.process-grid-item .image-container {
 		position: relative;
 		width: 100%;
 		height: 100%;
-	}
-
-	.process-grid-item .image-container:after {
-		content: '';
-		position: absolute;
-		inset: 0;
-		background-color: var(--color-grey-1);
-		mix-blend-mode: lighten;
-		opacity: 0;
-	}
-
-	.process-grid-item:hover .image-container:after,
-	.process-grid-item.touched .image-container:after {
-		opacity: 1;
-	}
-
-	:global(.process-grid-item:hover .image-container img),
-	:global(.process-grid-item:hover .image-container video),
-	:global(.process-grid-item.touched .image-container img),
-	:global(.process-grid-item.touched .image-container video) {
-		filter: grayscale(100%) contrast(1000%) brightness(50);
-		mix-blend-mode: multiply;
 	}
 
 	:global(.process-grid-item .item-image) {

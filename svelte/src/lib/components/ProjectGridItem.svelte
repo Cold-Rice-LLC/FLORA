@@ -8,7 +8,7 @@
 	let year = $derived(project.date ? format(parseISO(project.date), 'yyyy') : null);
 </script>
 
-<a href="/index/{project.slug.current}{params}" class="project-grid-item">
+<a href="/index/{project.slug.current}{params}" class="project-grid-item" data-sveltekit-noscroll>
 	<div class="label w-full text-xs-minus lg:text-xs font-secondary grid grid-cols-8 lg:grid-cols-8 gap-xs lg:gap-sm">
 		<div class="col-span-2 lg:col-span-1">
 			{#if project.projectNumber}<span>{project.projectNumber}</span>{/if}
