@@ -28,9 +28,13 @@
 		position: fixed;
 		width: calc(100% - (var(--spacing-base) * 2));
 		height: calc(100svh - (var(--spacing-sm) * 2));
-		top: 50%;
+		/* Anchor the top edge rather than vertically centering: on iOS Safari a
+		   `top: 50%` fixed element shifts as the address bar resizes the layout
+		   viewport, which drags this panel out of alignment with the fixed home nav.
+		   Pinning the top keeps it locked to the same reference frame as that nav. */
+		top: var(--spacing-sm);
 		left: 50%;
-		transform: translate(-50%, -50%);
+		transform: translateX(-50%);
 		background-color: var(--color-tan);
 		z-index: 100;
 		overflow-y: auto;

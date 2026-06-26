@@ -35,9 +35,12 @@
 		position: fixed;
 		width: calc(100% - (var(--spacing-lg) * 2));
 		height: 100svh;
-		top: 50%;
+		/* Anchor to the top instead of vertically centering: a `top: 50%` fixed
+		   element drifts on iOS Safari as the address bar resizes the layout
+		   viewport. Height is 100svh, so the centered top edge was already 0. */
+		top: 0;
 		left: 50%;
-		transform: translate(-50%, -50%);
+		transform: translateX(-50%);
 		background-color: var(--color-white);
 		z-index: 200;
 		overscroll-behavior: none;
