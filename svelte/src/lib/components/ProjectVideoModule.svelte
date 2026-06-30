@@ -4,7 +4,7 @@
 
 	let { module, stageOrder, mediaIndex, onVideoClick } = $props();
 
-	// Videos always render in a 16/9 (landscape) frame.
+	// Videos render at their native proportions within this column.
 	const vidColsClass = 'col-span-8 lg:col-span-4';
 	const captionColsClass = 'col-span-8 lg:col-span-5';
 </script>

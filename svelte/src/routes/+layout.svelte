@@ -12,6 +12,11 @@
 	// props
 	let { children, data } = $props();
 
+	// Measured intrinsic dimensions of featured videos, keyed by project id. Sanity
+	// doesn't store video dimensions, so we size each featured frame to its real
+	// proportions once the browser reports them (falling back to the poster's ratio).
+	let videoDims = $state({});
+
 	let isBackground = $derived($page.url.pathname !== '/');
 
 	// Lock page scrolling while a panel is open so the home page can't scroll behind it.
@@ -112,9 +117,12 @@
 	{/if}
 </svelte:head>
 
-<Nav id="main-nav" class="fixed top-0 left-0 w-full py-sm px-base lg:px-lg" />
+<!-- data-sveltekit-noscroll cascades to every link inside, so no navigation
+     (view switch, filters, nav) ever resets the home page scroll position. -->
+<div data-sveltekit-noscroll style="display: contents">
+	<Nav id="main-nav" class="fixed top-0 left-0 w-full py-sm px-base lg:px-lg" />
 
-<main>
+	<main>
 	{#if isBackground}
 		<a href="/" class="home-overlay" data-sveltekit-noscroll>
 			<span class="sr-only">Go to home</span>
@@ -127,8 +135,17 @@
 			{#each data.featuredProjects as project (project._id)}
 				<div class="featured-project">
 					{#if project.featuredVideo?.asset}
-						<div class="featured-project-image aspect-video relative">
-							<Video item={project.featuredVideo} poster={project.featuredImage} />
+						{@const vd =
+							videoDims[project._id] ?? project.featuredImage?.asset?.metadata?.dimensions}
+						<div
+							class="featured-project-image relative"
+							style={vd ? `aspect-ratio: ${vd.width} / ${vd.height}` : ''}
+						>
+							<Video
+								item={project.featuredVideo}
+								poster={project.featuredImage}
+								onmeta={(d) => (videoDims = { ...videoDims, [project._id]: d })}
+							/>
 						</div>
 					{:else if project.featuredImage?.asset}
 						{@const dims = project.featuredImage.asset.metadata?.dimensions}
@@ -156,8 +173,17 @@
 			{#each data.featuredProjects as project (project._id)}
 				<a href="/projects/{project.slug.current}" class="featured-project" data-sveltekit-noscroll>
 					{#if project.featuredVideo?.asset}
-						<div class="featured-project-image aspect-video relative">
-							<Video item={project.featuredVideo} poster={project.featuredImage} />
+						{@const vd =
+							videoDims[project._id] ?? project.featuredImage?.asset?.metadata?.dimensions}
+						<div
+							class="featured-project-image relative"
+							style={vd ? `aspect-ratio: ${vd.width} / ${vd.height}` : ''}
+						>
+							<Video
+								item={project.featuredVideo}
+								poster={project.featuredImage}
+								onmeta={(d) => (videoDims = { ...videoDims, [project._id]: d })}
+							/>
 						</div>
 					{:else if project.featuredImage?.asset}
 						{@const dims = project.featuredImage.asset.metadata?.dimensions}
@@ -183,7 +209,8 @@
 	</div>
 
 	{@render children()}
-</main>
+	</main>
+</div>
 
 <style lang="postcss">
 .home-overlay {

@@ -1,7 +1,15 @@
 <script>
 	import { urlFor } from '$lib/sanity/client.js';
 
-	let { item, poster, classes, preload = 'metadata', autoplay = true, loop = true } = $props();
+	let {
+		item,
+		poster,
+		classes,
+		preload = 'metadata',
+		autoplay = true,
+		loop = true,
+		onmeta
+	} = $props();
 
 	const src = $derived(item?.asset?.url);
 	const posterUrl = $derived(poster?.asset ? urlFor(poster.asset).width(1800).url() : undefined);
@@ -13,10 +21,19 @@
 	$effect(() => {
 		if (el) el.muted = true;
 	});
+
+	// Sanity doesn't store dimensions for uploaded video files, so report the
+	// intrinsic size once the browser has it — lets callers size the frame to the
+	// video's real proportions instead of guessing.
+	function handleMeta() {
+		if (el?.videoWidth && el?.videoHeight) {
+			onmeta?.({ width: el.videoWidth, height: el.videoHeight });
+		}
+	}
 </script>
 
 <!-- svelte-ignore a11y_media_has_caption -->
-<figure class="aspect-video">
+<figure>
 	<video
 		bind:this={el}
 		{src}
@@ -27,16 +44,22 @@
 		{loop}
 		playsinline
 		{preload}
+		onloadedmetadata={handleMeta}
 	></video>
 </figure>
 
 <style>
-	/* Videos render in a fixed 16/9 frame by default. Square grid thumbnails and
-	   the carousel override this via higher-specificity selectors. */
+	figure {
+		margin: 0;
+	}
+
+	/* Videos render at their native proportions by default. Square grid
+	   thumbnails, the carousel, and the featured filmstrip override this via
+	   higher-specificity selectors. */
 	video {
 		display: block;
 		width: 100%;
-		height: 100%;
-		object-fit: cover;
+		height: auto;
+		object-fit: contain;
 	}
 </style>

@@ -136,4 +136,12 @@
 		object-fit: contain;
 		object-position: right bottom;
 	}
+
+	/* Chromium paints a faint dark seam at the edge of a <video> drawn with
+	   object-fit: contain. Cover it with a 1px border in the panel background
+	   colour so the thumbnail reads clean. Images don't have this artifact. */
+	/* :global(.process-grid-item video.item-image) {
+		box-sizing: border-box;
+		border: 1px solid var(--color-tan);
+	} */
 </style>

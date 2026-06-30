@@ -1,17 +1,3 @@
-const MAX_VIDEO_MB = 10
-
-// Warns (non-blocking) when an uploaded video exceeds the size budget. Runs after
-// upload — Sanity has no pre-upload size cap — so it nudges rather than prevents.
-const videoSizeWarning = (Rule) =>
-  Rule.custom(async (video, context) => {
-    if (!video?.asset?._ref) return true
-    const client = context.getClient({apiVersion: '2024-01-01'})
-    const size = await client.fetch(`*[_id == $id][0].size`, {id: video.asset._ref})
-    return size && size > MAX_VIDEO_MB * 1024 * 1024
-      ? `This video is ${(size / 1024 / 1024).toFixed(1)}MB. Keep it under ${MAX_VIDEO_MB}MB so it autoplays smoothly.`
-      : true
-  }).warning()
-
 export default {
   name: 'news',
   type: 'document',
@@ -123,7 +109,6 @@ export default {
               title: 'Video',
               description: 'MP4 file. Plays muted and loops automatically.',
               options: {accept: 'video/mp4'},
-              validation: (Rule) => videoSizeWarning(Rule),
             },
             {
               name: 'poster',

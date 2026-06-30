@@ -29,7 +29,11 @@
 			.flatMap((project) =>
 				(project.phases ?? [])
 					.filter((phase) =>
-						phase.modules?.some((m) => m._type === 'imageModule' && m.image?.asset)
+						phase.modules?.some(
+							(m) =>
+								(m._type === 'imageModule' && m.image?.asset) ||
+								(m._type === 'videoModule' && m.video?.asset)
+						)
 					)
 					.map((phase) => ({ project, phase }))
 			)
