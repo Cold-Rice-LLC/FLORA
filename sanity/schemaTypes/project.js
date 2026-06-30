@@ -70,6 +70,7 @@ export default {
       type: 'array',
       title: 'Process Stages',
       description: 'Add one entry per stage. Each project stage can only be used once.',
+      options: {sortable: false},
       of: [
         {
           type: 'object',
