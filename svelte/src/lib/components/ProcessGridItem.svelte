@@ -10,14 +10,8 @@
 	// Project year
 	let year = $derived(item.project.date ? format(parseISO(item.project.date), 'yyyy') : null);
 
-	// First media module (image or video) across all modules in this phase
-	let firstMedia = $derived(
-		item.phase.modules?.find(
-			(m) =>
-				(m._type === 'imageModule' && m.image?.asset) ||
-				(m._type === 'videoModule' && m.video?.asset)
-		) ?? null
-	);
+	// This item's media module (image or video) — one grid item per media
+	let media = $derived(item.media);
 
 	// Distinguish a tap from a scroll/drag gesture so scrolling doesn't reveal state.
 	const MOVE_THRESHOLD = 10;
@@ -66,7 +60,7 @@
 	onclick={onClick}
 >
 	<div class="label text-xs-minus lg:text-xs font-secondary">
-		<p>{item.project.projectNumber} [{item.phase.category?.order}]</p>
+		<p>{item.project.projectNumber} [{item.phase.category?.order}.{item.mediaNumber}]</p>
 
 		<div class="hover-content">
 			{#if item.project.title}
@@ -81,13 +75,13 @@
 		</div>
 	</div>
 
-	{#if firstMedia?._type === 'videoModule'}
+	{#if media?._type === 'videoModule'}
 		<div class="image-container inset-0">
-			<Video item={firstMedia.video} poster={firstMedia.poster} classes="item-image" />
+			<Video item={media.video} poster={media.poster} classes="item-image" />
 		</div>
-	{:else if firstMedia?._type === 'imageModule'}
+	{:else if media?._type === 'imageModule'}
 		<div class="image-container inset-0">
-			<Image item={firstMedia.image} classes="item-image" />
+			<Image item={media.image} classes="item-image" />
 		</div>
 	{/if}
 </a>

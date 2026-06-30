@@ -23,19 +23,20 @@
 		return `/index?${params.toString()}`;
 	}
 
-	// process grid items — flatten phases, filter to those with images, sort by lastUpdated
+	// process grid items — one item per media module (image or video) within each
+	// phase, numbered .1, .2, … in module order; sort by lastUpdated
 	let processItems = $derived(
 		(data.projects ?? [])
 			.flatMap((project) =>
-				(project.phases ?? [])
-					.filter((phase) =>
-						phase.modules?.some(
+				(project.phases ?? []).flatMap((phase) =>
+					(phase.modules ?? [])
+						.filter(
 							(m) =>
 								(m._type === 'imageModule' && m.image?.asset) ||
 								(m._type === 'videoModule' && m.video?.asset)
 						)
-					)
-					.map((phase) => ({ project, phase }))
+						.map((media, i) => ({ project, phase, media, mediaNumber: i + 1 }))
+				)
 			)
 			.filter((item) =>
 				activeStage ? String(item.phase.category?.order) === activeStage : true

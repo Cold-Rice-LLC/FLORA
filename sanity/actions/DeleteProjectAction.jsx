@@ -1,6 +1,7 @@
 import {useState} from 'react'
 import {TrashIcon} from '@sanity/icons'
-import {useClient, useToast} from 'sanity'
+import {useToast} from '@sanity/ui'
+import {useClient} from 'sanity'
 
 // Replaces the default "Delete" action for projects.
 // In one transaction it: deletes every phase belonging to the project,
