@@ -29,26 +29,17 @@ export const myStructure = (S) =>
         ),
 
       S.listItem()
-        .title('Index')
+        .title('Projects')
         .icon(ImagesIcon)
-        .child(
-          S.list()
-            .title('Index')
-            .items([
-              S.listItem()
-                .title('Projects')
-                .icon(ImagesIcon)
-                .child(S.documentTypeList('project').title('Projects')),
+        .child(S.documentTypeList('project').title('Projects')),
 
-              S.listItem()
-                .title('Process Stages')
-                .icon(TagIcon)
-                .child(
-                  S.documentTypeList('phaseCategory')
-                    .title('Process Stages')
-                    .defaultOrdering([{field: 'order', direction: 'asc'}]),
-                ),
-            ]),
+      S.listItem()
+        .title('Process Stages')
+        .icon(TagIcon)
+        .child(
+          S.documentTypeList('phaseCategory')
+            .title('Process Stages')
+            .defaultOrdering([{field: 'order', direction: 'asc'}]),
         ),
 
       S.listItem()
