@@ -1,4 +1,5 @@
 import {ReferenceRadio} from '../components/ReferenceRadio.jsx'
+import {LockedStagesInput} from '../components/LockedStagesInput.jsx'
 
 export default {
   name: 'project',
@@ -87,8 +88,8 @@ export default {
       title: 'Process Stages',
       description: 'The four project stages. Fill in the ones this project uses; empty stages are hidden on the site.',
       options: {sortable: false},
-      // Fixed 1–4 skeleton: no adding or removing stages from the list.
-      components: {arrayFunctions: () => null},
+      // Fixed 1–4 skeleton: the custom input removes the "Add item" button.
+      components: {input: LockedStagesInput},
       of: [
         {
           type: 'object',
