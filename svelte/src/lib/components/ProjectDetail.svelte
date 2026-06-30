@@ -12,6 +12,14 @@
 		(m._type === 'imageModule' && m.image?.asset) ||
 		(m._type === 'videoModule' && m.video?.asset);
 
+	// Stages shown on the page: only those with at least one image/video,
+	// in stage order. Empty stages (no media) are hidden.
+	let visiblePhases = $derived(
+		(data.project?.phases ?? [])
+			.filter((phase) => (phase.modules ?? []).some(isMediaModule))
+			.sort((a, b) => (a.category?.order ?? 0) - (b.category?.order ?? 0))
+	);
+
 	// Flatten all media modules across all phases into a single carousel array
 	let allMedia = $derived(
 		(data.project?.phases ?? []).flatMap((phase) =>
@@ -54,7 +62,7 @@
 		</section>
 	{/if}
 
-	{#each (data.project?.phases ?? []) as phase (phase._key)}
+	{#each visiblePhases as phase (phase._key)}
 		<section id="stage-{phase.category?.order}" class="space-y-base">
 			{#each (phase.modules ?? []) as module (module._key)}
 				{#if module._type === 'imageModule'}

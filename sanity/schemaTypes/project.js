@@ -4,6 +4,22 @@ export default {
   name: 'project',
   type: 'document',
   title: 'Project',
+  // New projects start with all four stages (one per phaseCategory, in order),
+  // so the Process Stages list is a fixed 1–4 skeleton the editor fills in.
+  initialValue: async (_params, context) => {
+    const client = context.getClient({apiVersion: '2024-01-01'})
+    const categories = await client.fetch(
+      `*[_type == "phaseCategory" && !(_id in path("drafts.**"))] | order(order asc){_id}`,
+    )
+    return {
+      phases: categories.map((cat, i) => ({
+        _key: `stage${i + 1}`,
+        _type: 'phase',
+        category: {_type: 'reference', _ref: cat._id},
+        modules: [],
+      })),
+    }
+  },
   fields: [
     {
       name: 'title',
@@ -69,8 +85,10 @@ export default {
       name: 'phases',
       type: 'array',
       title: 'Process Stages',
-      description: 'Add one entry per stage. Each project stage can only be used once.',
+      description: 'The four project stages. Fill in the ones this project uses; empty stages are hidden on the site.',
       options: {sortable: false},
+      // Fixed 1–4 skeleton: no adding or removing stages from the list.
+      components: {arrayFunctions: () => null},
       of: [
         {
           type: 'object',
@@ -94,6 +112,9 @@ export default {
               title: 'Project Stage',
               to: [{type: 'phaseCategory'}],
               validation: (Rule) => Rule.required(),
+              // Fixed by the 1–4 skeleton; the stage is shown in each item's
+              // title, so the picker is hidden to keep it from being changed.
+              hidden: true,
               components: {
                 input: ReferenceRadio,
               },
