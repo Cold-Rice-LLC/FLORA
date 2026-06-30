@@ -24,7 +24,7 @@
 	}
 
 	// process grid items — one item per media module (image or video) within each
-	// phase, numbered .1, .2, … in module order; sort by lastUpdated
+	// phase, numbered .1, .2, … in module order; sort by each media's date
 	let processItems = $derived(
 		(data.projects ?? [])
 			.flatMap((project) =>
@@ -42,9 +42,9 @@
 				activeStage ? String(item.phase.category?.order) === activeStage : true
 			)
 			.sort((a, b) => {
-				if (!a.phase.lastUpdated) return 1;
-				if (!b.phase.lastUpdated) return -1;
-				return new Date(b.phase.lastUpdated) - new Date(a.phase.lastUpdated);
+				if (!a.media.date) return 1;
+				if (!b.media.date) return -1;
+				return new Date(b.media.date) - new Date(a.media.date);
 			})
 	);
 

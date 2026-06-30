@@ -19,6 +19,7 @@ export async function loadProject({ params }) {
 				modules[] {
 					_type,
 					_key,
+					date,
 					image { asset-> },
 					video { asset-> },
 					poster { asset-> },

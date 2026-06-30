@@ -98,13 +98,6 @@ export default {
               },
             },
             {
-              name: 'lastUpdated',
-              type: 'date',
-              title: 'Last Updated',
-              description:
-                'Set this when you add or update work on this stage. Used to sort the process grid.',
-            },
-            {
               name: 'modules',
               type: 'array',
               title: 'Modules',
@@ -122,6 +115,12 @@ export default {
                       options: {hotspot: true},
                     },
                     {
+                      name: 'date',
+                      type: 'date',
+                      title: 'Date',
+                      description: 'Used to order this item in the process grid.',
+                    },
+                    {
                       name: 'captionEs',
                       type: 'array',
                       title: 'Caption (Spanish)',
@@ -135,9 +134,9 @@ export default {
                     },
                   ],
                   preview: {
-                    select: {media: 'image'},
-                    prepare({media}) {
-                      return {title: 'Image', media}
+                    select: {media: 'image', date: 'date'},
+                    prepare({media, date}) {
+                      return {title: 'Image', subtitle: date, media}
                     },
                   },
                 },
@@ -162,6 +161,12 @@ export default {
                       validation: (Rule) => Rule.required(),
                     },
                     {
+                      name: 'date',
+                      type: 'date',
+                      title: 'Date',
+                      description: 'Used to order this item in the process grid.',
+                    },
+                    {
                       name: 'captionEs',
                       type: 'array',
                       title: 'Caption (Spanish)',
@@ -175,9 +180,9 @@ export default {
                     },
                   ],
                   preview: {
-                    select: {media: 'poster'},
-                    prepare({media}) {
-                      return {title: 'Video', media}
+                    select: {media: 'poster', date: 'date'},
+                    prepare({media, date}) {
+                      return {title: 'Video', subtitle: date, media}
                     },
                   },
                 },

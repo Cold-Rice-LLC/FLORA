@@ -17,11 +17,11 @@ export const load = async () => {
 				featuredVideo { asset-> },
 				phases[] {
 					_key,
-					lastUpdated,
 					category-> { _id, order, titleEs, titleEn },
 					modules[] {
 						_type,
 						_key,
+						date,
 						image { asset-> },
 						video { asset-> },
 						poster { asset-> }
