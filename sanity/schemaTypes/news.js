@@ -3,12 +3,12 @@ export default {
   type: 'document',
   title: 'News',
   preview: {
-    select: {title: 'title', date: 'date'},
-    prepare({title, date}) {
+    select: {title: 'title', date: 'date', hidden: 'hidden'},
+    prepare({title, date, hidden}) {
       const formatted = date
         ? new Date(date).toLocaleDateString('es-ES', {day: 'numeric', month: 'numeric', year: 'numeric'})
         : 'No date'
-      return {title, subtitle: formatted}
+      return {title, subtitle: `${formatted} · ${hidden ? 'Hidden' : 'Visible'}`}
     },
   },
   orderings: [
@@ -59,6 +59,13 @@ export default {
       type: 'string',
       title: 'Time',
       description: 'Freeform time display — e.g. "7pm", "1–6pm", "Doors at 8".',
+    },
+    {
+      name: 'hidden',
+      type: 'boolean',
+      title: 'Hidden',
+      description: 'Hide this news item from the website without deleting it.',
+      initialValue: false,
     },
     {
       name: 'modules',

@@ -6,13 +6,12 @@ export const load = async () => {
 			`*[_type == "phaseCategory"] | order(order asc) { _id, order, titleEs, titleEn }`
 		),
 		client.fetch(`
-			*[_type == "project"] | order(date desc) {
+			*[_type == "project" && hidden != true] | order(date desc) {
 				_id,
 				title,
 				slug,
 				projectNumber,
 				date,
-				previewText,
 				featuredImage { asset-> },
 				featuredVideo { asset-> },
 				phases[] {
@@ -22,6 +21,7 @@ export const load = async () => {
 						_type,
 						_key,
 						date,
+						previewText,
 						image { asset-> },
 						video { asset-> },
 						poster { asset-> }

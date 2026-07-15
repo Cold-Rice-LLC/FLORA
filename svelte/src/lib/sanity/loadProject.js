@@ -11,7 +11,6 @@ export async function loadProject({ params }) {
 			projectNumber,
 			date,
 			introduction,
-			previewText,
 			featuredImage { asset-> },
 			phases[] {
 				_key,
@@ -37,9 +36,17 @@ export async function loadProject({ params }) {
 		? ['FLORA', project.projectNumber, project.title].filter(Boolean).join(' ')
 		: 'FLORA';
 
+	// Derive a plain-text OG/social description from the first paragraph of the
+	// introduction rich text (Preview Text now lives per-module, not per-project).
+	const description =
+		project?.introduction
+			?.find((block) => block._type === 'block')
+			?.children?.map((child) => child.text)
+			.join('') || undefined;
+
 	const meta = {
 		title,
-		description: project?.previewText,
+		description,
 		image: ogImage(project?.featuredImage)
 	};
 

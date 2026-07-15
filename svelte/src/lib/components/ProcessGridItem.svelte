@@ -29,8 +29,8 @@
 			{#if year}
 				<p class="year">{year}</p>
 			{/if}
-			{#if item.project.previewText}
-				<div class="preview-text">{item.project.previewText}</div>
+			{#if media?.previewText}
+				<div class="preview-text">{media.previewText}</div>
 			{/if}
 		</div>
 	</div>

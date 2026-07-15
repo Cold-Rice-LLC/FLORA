@@ -6,10 +6,11 @@ export default {
   type: 'document',
   title: 'Project',
   preview: {
-    select: {title: 'title', projectNumber: 'projectNumber', media: 'featuredImage'},
-    prepare({title, projectNumber, media}) {
+    select: {title: 'title', projectNumber: 'projectNumber', media: 'featuredImage', hidden: 'hidden'},
+    prepare({title, projectNumber, media, hidden}) {
       return {
         title: projectNumber != null ? `(${projectNumber}) ${title}` : title,
+        subtitle: hidden ? 'Hidden' : 'Visible',
         media,
       }
     },
@@ -80,10 +81,11 @@ export default {
       description: 'Used for sorting. Year will be derived from this on the frontend.',
     },
     {
-      name: 'previewText',
-      type: 'text',
-      title: 'Preview Text',
-      description: 'Shows up when the project is hovered over in the projects/process grid.',
+      name: 'hidden',
+      type: 'boolean',
+      title: 'Hidden',
+      description: 'Hide this project from the website without deleting it.',
+      initialValue: false,
     },
     {
       name: 'introduction',
@@ -154,6 +156,12 @@ export default {
                       description: 'Used to order this item in the process grid.',
                     },
                     {
+                      name: 'previewText',
+                      type: 'text',
+                      title: 'Preview Text',
+                      description: 'Shows up when this item is hovered over in the process grid.',
+                    },
+                    {
                       name: 'captionEs',
                       type: 'array',
                       title: 'Caption (Spanish)',
@@ -198,6 +206,12 @@ export default {
                       type: 'date',
                       title: 'Date',
                       description: 'Used to order this item in the process grid.',
+                    },
+                    {
+                      name: 'previewText',
+                      type: 'text',
+                      title: 'Preview Text',
+                      description: 'Shows up when this item is hovered over in the process grid.',
                     },
                     {
                       name: 'captionEs',

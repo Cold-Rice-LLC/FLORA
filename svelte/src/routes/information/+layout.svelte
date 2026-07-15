@@ -45,8 +45,12 @@
 {@render children()}
 
 <style>
-	.information-text {
-		position: sticky;
-		top: 0px;
+	/* Sticky only on desktop; on mobile the columns stack and the info text
+	   scrolls normally with the page. */
+	@media (min-width: 1024px) {
+		.information-text {
+			position: sticky;
+			top: 0px;
+		}
 	}
 </style>

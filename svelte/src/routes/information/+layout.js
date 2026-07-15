@@ -3,7 +3,7 @@ import { client } from '$lib/sanity/client.js';
 export const load = async () => {
 	const [news, informationPage] = await Promise.all([
 		client.fetch(`
-			*[_type == "news"] | order(date desc) {
+			*[_type == "news" && hidden != true] | order(date desc) {
 				_id,
 				title,
 				slug,
