@@ -5,7 +5,7 @@
 	let { children, data } = $props();
 
 	let formattedDate = $derived(
-		data?.news?.date ? format(parseISO(data.news.date), 'M.d.yy') : null
+		data?.news?.date ? format(parseISO(data.news.date), 'd.M.yy') : null
 	);
 
 	let closeHref = $derived($page.url.pathname.startsWith('/information') ? '/information' : '/');

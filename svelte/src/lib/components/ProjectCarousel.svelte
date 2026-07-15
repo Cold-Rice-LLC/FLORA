@@ -82,8 +82,9 @@
 		if (isTouchDevice) return;
 		const deltaX = e.clientX - startX;
 		const deltaY = e.clientY - startY;
+		// A click (not a drag) advances to the next slide; Escape closes.
 		if (Math.abs(deltaX) <= threshold && Math.abs(deltaY) <= threshold) {
-			activeIndex = -1;
+			swiperApi?.slideNext();
 		}
 	}
 

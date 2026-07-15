@@ -6,7 +6,7 @@
 
 	let formattedDate = $derived(
 		news.date
-			? format(parseISO(news.date), 'M.d.yy')
+			? format(parseISO(news.date), 'd.M.yy')
 			: null
 	);
 
@@ -14,7 +14,7 @@
 </script>
 
 <article class="news-item text-xs-minus lg:text-xs font-secondary" class:opacity-30={isActive}>
-  <a href="/information/{news.slug.current}" data-sveltekit-noscroll>
+  <a href="/information/{news.slug.current}" data-sveltekit-noscroll class="lg:hover:text-grey-1">
     {#if formattedDate || news.time}
       <p class="date">
         {#if formattedDate}<span>{formattedDate}</span>{/if}

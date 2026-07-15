@@ -5,6 +5,15 @@ export default {
   name: 'project',
   type: 'document',
   title: 'Project',
+  preview: {
+    select: {title: 'title', projectNumber: 'projectNumber', media: 'featuredImage'},
+    prepare({title, projectNumber, media}) {
+      return {
+        title: projectNumber != null ? `(${projectNumber}) ${title}` : title,
+        media,
+      }
+    },
+  },
   // New projects start with all four stages (one per phaseCategory, in order),
   // so the Process Stages list is a fixed 1–4 skeleton the editor fills in.
   initialValue: async (_params, context) => {
@@ -86,7 +95,8 @@ export default {
       name: 'phases',
       type: 'array',
       title: 'Process Stages',
-      description: 'The four project stages. Fill in the ones this project uses; empty stages are hidden on the site.',
+      description:
+        'The four project stages. Fill in the ones this project uses; empty stages are hidden on the site.',
       options: {sortable: false},
       // Fixed 1–4 skeleton: the custom input removes the "Add item" button.
       components: {input: LockedStagesInput},

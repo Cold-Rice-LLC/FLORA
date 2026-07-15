@@ -6,7 +6,7 @@ export default {
     select: {title: 'title', date: 'date'},
     prepare({title, date}) {
       const formatted = date
-        ? new Date(date).toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric'})
+        ? new Date(date).toLocaleDateString('es-ES', {day: 'numeric', month: 'numeric', year: 'numeric'})
         : 'No date'
       return {title, subtitle: formatted}
     },

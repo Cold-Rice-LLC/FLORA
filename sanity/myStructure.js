@@ -10,23 +10,14 @@ export const myStructure = (S) =>
         .child(S.document().schemaType('siteSettings').documentId('siteSettings')),
 
       S.listItem()
-        .title('Pages')
+        .title('Home')
         .icon(HomeIcon)
-        .child(
-          S.list()
-            .title('Pages')
-            .items([
-              S.listItem()
-                .title('Home')
-                .icon(HomeIcon)
-                .child(S.document().schemaType('homePage').documentId('homePage')),
+        .child(S.document().schemaType('homePage').documentId('homePage')),
 
-              S.listItem()
-                .title('Information')
-                .icon(InfoOutlineIcon)
-                .child(S.document().schemaType('informationPage').documentId('informationPage')),
-            ]),
-        ),
+      S.listItem()
+        .title('Information')
+        .icon(InfoOutlineIcon)
+        .child(S.document().schemaType('informationPage').documentId('informationPage')),
 
       S.listItem()
         .title('Projects')
