@@ -195,7 +195,7 @@
 						</div>
 					{/if}
 					
-					<div class="featured-project-meta flex-none text-xs-minus lg:text-xs font-secondary flex gap-base lg:gap-[16vw] py-sm px-xs" data-sveltekit-noscroll>
+					<div class="featured-project-meta flex-none text-xs-minus lg:text-xs font-secondary flex gap-base lg:gap-[16vw]" data-sveltekit-noscroll>
 						<div class="flex gap-sm lg:gap-[3.2vw]">
 							{#if project.projectNumber}<span>{project.projectNumber}</span>{/if}
 							{#if project.title}<span>{project.title}</span>{/if}
@@ -282,6 +282,14 @@
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
+	}
+}
+
+.featured-project-meta {
+	padding: 0.8rem var(--spacing-xs) var(--spacing-sm) var(--spacing-xs);
+
+	@media (min-width: 1024px) {
+		padding: var(--spacing-sm) var(--spacing-xs);
 	}
 }
 
