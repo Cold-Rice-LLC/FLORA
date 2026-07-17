@@ -79,6 +79,7 @@ export default {
       type: 'date',
       title: 'Date',
       description: 'Used for sorting. Year will be derived from this on the frontend.',
+      options: {dateFormat: 'DD/MM/YYYY'},
     },
     {
       name: 'hidden',
@@ -154,6 +155,7 @@ export default {
                       type: 'date',
                       title: 'Date',
                       description: 'Used to order this item in the process grid.',
+                      options: {dateFormat: 'DD/MM/YYYY'},
                     },
                     {
                       name: 'previewText',
@@ -177,7 +179,10 @@ export default {
                   preview: {
                     select: {media: 'image', date: 'date'},
                     prepare({media, date}) {
-                      return {title: 'Image', subtitle: date, media}
+                      const formatted = date
+                        ? new Date(date).toLocaleDateString('es-ES', {day: 'numeric', month: 'numeric', year: 'numeric'})
+                        : undefined
+                      return {title: 'Image', subtitle: formatted, media}
                     },
                   },
                 },
@@ -206,6 +211,7 @@ export default {
                       type: 'date',
                       title: 'Date',
                       description: 'Used to order this item in the process grid.',
+                      options: {dateFormat: 'DD/MM/YYYY'},
                     },
                     {
                       name: 'previewText',
@@ -229,7 +235,10 @@ export default {
                   preview: {
                     select: {media: 'poster', date: 'date'},
                     prepare({media, date}) {
-                      return {title: 'Video', subtitle: date, media}
+                      const formatted = date
+                        ? new Date(date).toLocaleDateString('es-ES', {day: 'numeric', month: 'numeric', year: 'numeric'})
+                        : undefined
+                      return {title: 'Video', subtitle: formatted, media}
                     },
                   },
                 },

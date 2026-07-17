@@ -286,7 +286,7 @@
 }
 
 .featured-project-meta {
-	padding: 0.8rem var(--spacing-xs) var(--spacing-sm) var(--spacing-xs);
+	padding: var(--spacing-xs) var(--spacing-xs) var(--spacing-sm) var(--spacing-xs);
 
 	@media (min-width: 1024px) {
 		padding: var(--spacing-sm) var(--spacing-xs);

@@ -53,6 +53,7 @@ export default {
       type: 'date',
       title: 'Date',
       description: 'Used for ordering and filtering as well as display on the frontend.',
+      options: {dateFormat: 'DD/MM/YYYY'},
     },
     {
       name: 'time',
