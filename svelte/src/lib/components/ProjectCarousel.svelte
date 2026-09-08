@@ -132,6 +132,8 @@
 			{/each}
 		</div>
 	</div>
+
+	<button onclick={() => activeIndex = -1} class="close font-secondary text-xs-minus lg:text-xs absolute bottom-4 left-[50%] translate-x-[-50%] z-[1000] text-white hidden lg:block">[Esc]</button>
 </div>
 
 <style>
