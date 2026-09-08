@@ -18,6 +18,9 @@
 
 	let isActive = $derived(activeIndex >= 0);
 
+	// Show the [Esc] hint each time the carousel opens, then fade it out.
+	let hintVisible = $state(false);
+
 	// Restart the video on the active slide and stop every other one — keeps
 	// looped-clone and off-screen videos from playing in the background.
 	function syncVideos() {
@@ -63,6 +66,13 @@
 
 	$effect(() => {
 		document.body.style.overflow = isActive ? 'hidden' : '';
+	});
+
+	$effect(() => {
+		hintVisible = isActive;
+		if (!isActive) return;
+		const timer = setTimeout(() => (hintVisible = false), 4000);
+		return () => clearTimeout(timer);
 	});
 
 	function onKeyDown(e) {
@@ -133,7 +143,13 @@
 		</div>
 	</div>
 
-	<button onclick={() => activeIndex = -1} class="close font-secondary text-xs-minus lg:text-xs absolute bottom-4 left-[50%] translate-x-[-50%] z-[1000] text-white hidden lg:block">[Esc]</button>
+	<button
+		onclick={() => activeIndex = -1}
+		class="close font-secondary text-xs-minus lg:text-xs absolute bottom-4 left-[50%] translate-x-[-50%] z-[1000] text-white hidden lg:block transition-opacity duration-500"
+		class:opacity-0={!hintVisible}
+		class:pointer-events-none={!hintVisible}
+		tabindex={hintVisible ? 0 : -1}
+	>[Esc]</button>
 </div>
 
 <style>
