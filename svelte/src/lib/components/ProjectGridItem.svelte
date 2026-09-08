@@ -43,17 +43,15 @@
 
 	.label {
 		position: absolute;
-		top: 0px;
-		left: 0px;
+		top: 0;
+		left: 0;
 		z-index: 1;
 		transform: translateY(-0.14em);
 	}
 
-	/* .project-grid-item:hover .image-container {
-		@media (min-width: 1024px) {
-			opacity: .5;
-		}
-	} */
+	.project-grid-item:hover .image-container {
+		opacity: .5;
+	}
 
 	:global(.project-grid-item .item-image) {
 		position: absolute;
