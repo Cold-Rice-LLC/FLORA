@@ -2,7 +2,7 @@
 	import '../styles/index.css';
 	import NProgress from 'nprogress';
 	import 'nprogress/nprogress.css';
-	import { beforeNavigate, afterNavigate, goto } from '$app/navigation';
+	import { beforeNavigate, afterNavigate, goto, preloadData } from '$app/navigation';
 	import { format, parseISO } from 'date-fns';
 	import { page } from '$app/stores';
 	import Nav from '$lib/components/Nav.svelte';
@@ -137,9 +137,12 @@
 					{#if project.featuredVideo?.asset}
 						{@const vd =
 							videoDims[project._id] ?? project.featuredImage?.asset?.metadata?.dimensions}
+						<!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
 						<div
-							class="featured-project-image relative"
+							class="featured-project-image cursor-pointer relative"
 							style={vd ? `aspect-ratio: ${vd.width} / ${vd.height}` : ''}
+							onclick={() => goto(`/projects/${project.slug.current}`, { noScroll: true })}
+							onmouseenter={() => preloadData(`/projects/${project.slug.current}`)}
 						>
 							<Video
 								item={project.featuredVideo}
@@ -149,9 +152,12 @@
 						</div>
 					{:else if project.featuredImage?.asset}
 						{@const dims = project.featuredImage.asset.metadata?.dimensions}
+						<!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
 						<div
-							class="featured-project-image"
+							class="featured-project-image cursor-pointer"
 							style={dims ? `aspect-ratio: ${dims.width} / ${dims.height}` : ''}
+							onclick={() => goto(`/projects/${project.slug.current}`, { noScroll: true })}
+							onmouseenter={() => preloadData(`/projects/${project.slug.current}`)}
 						>
 							<Image item={project.featuredImage} />
 						</div>
