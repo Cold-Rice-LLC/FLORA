@@ -4,14 +4,13 @@
 
 	let { module, stageOrder, mediaIndex, onVideoClick } = $props();
 
-	// Videos render at their native proportions within this column.
-	const vidColsClass = 'col-span-8 lg:col-span-4';
 	const captionColsClass = 'col-span-8 lg:col-span-5';
 </script>
 
 <div class="flex flex-col gap-sm">
 	<div class="grid grid-cols-8 gap-sm">
-		<div class={vidColsClass}>
+		<!-- Videos are wide, so their width is the shared long edge (see ProjectDetail). -->
+		<div class="col-span-8 lg:w-(--media-long-edge)">
 			<span class="text-xs-minus lg:text-xs font-secondary">[{stageOrder}.{mediaIndex}]</span>
 			{#if module.video?.asset}
 				<button class="video-btn" onclick={onVideoClick}>

@@ -53,7 +53,7 @@
 	}
 </script>
 
-<div class="project-detail space-y-lg lg:space-y-xl">
+<div class="project-detail @container space-y-lg lg:space-y-xl">
 	{#if data.project?.introduction}
 		<section class="grid grid-cols-8 gap-sm">
 			<div class="col-span-8 rich-text text-sm lg:text-md font-secondary">
@@ -92,3 +92,12 @@
 </div>
 
 <ProjectCarousel media={allMedia} bind:activeIndex={carouselIndex} />
+
+<style>
+	/* Shared long edge for project media on desktop: the height a 2:3 portrait
+	   (the tallest image shape in use) gets at 3 of the 8 grid columns. Images
+	   size their longest side to it, so wide and tall images read the same size. */
+	.project-detail {
+		--media-long-edge: calc(1.5 * ((100cqw - 7 * var(--spacing-sm)) * 3 / 8 + 2 * var(--spacing-sm)));
+	}
+</style>
