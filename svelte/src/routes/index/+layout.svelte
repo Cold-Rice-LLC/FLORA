@@ -1,4 +1,5 @@
 <script>
+	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 	import InfoPanel from '$lib/components/InfoPanel.svelte';
 	import ProcessGrid from '$lib/components/ProcessGrid.svelte';
@@ -21,6 +22,18 @@
 		const params = new URLSearchParams({ view: 'process' });
 		if (activeStage !== String(stage.order)) params.set('stage', stage.order);
 		return `/index?${params.toString()}`;
+	}
+
+	// keys 1–4 toggle the matching stage filter, same as clicking its [n] link —
+	// process list only, and never while typing or with a project detail open
+	function handleKeydown(e) {
+		if (view !== 'process' || $page.url.pathname !== '/index') return;
+		if (e.repeat || e.defaultPrevented || e.metaKey || e.ctrlKey || e.altKey) return;
+		if (e.target.closest?.('input, textarea, select, [contenteditable]')) return;
+		const stage = data.stages?.find((s) => String(s.order) === e.key);
+		if (!stage) return;
+		e.preventDefault();
+		goto(stageHref(stage));
 	}
 
 	// process grid items — one item per media module (image or video) within each
@@ -67,6 +80,8 @@
 			})
 	);
 </script>
+
+<svelte:window onkeydown={handleKeydown} />
 
 <InfoPanel href="/index">
 	<!-- Index list content goes here (loaded via +layout.js) -->
